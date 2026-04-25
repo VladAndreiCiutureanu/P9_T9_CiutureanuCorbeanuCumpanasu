@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AirlineFlightManagement.DataAccess/AirlineFlightManagement.DataAccess.csproj" Id="21d0078f-9de0-44fe-b7e6-d9efa8c159c4" />
+  <Project Path="AirlineFlightManagement.Models/AirlineFlightManagement.Models.csproj" Id="ab8bcf61-d59e-4b7e-a52d-55f42db8ffb7" />
+  <Project Path="AirlineFlightManagement.Services/AirlineFlightManagement.Services.csproj" Id="ad196b4e-e266-4e90-aff5-0e7c17b44b10" />
+  <Project Path="AirlineFlightManagementWeb/AirlineFlightManagementWeb.csproj" />
+</Solution>

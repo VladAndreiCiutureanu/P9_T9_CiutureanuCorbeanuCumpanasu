@@ -1,0 +1,3 @@
+﻿@using AirlineFlightManagementWeb
+@using AirlineFlightManagementWeb.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
