@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AirlineFlightManagement.DataAccess.Data.Migrations
+namespace AirlineFlightManagement.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class FixCascadePaths : Migration

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace AirlineFlightManagement.DataAccess.Data.Migrations
+namespace AirlineFlightManagement.DataAccess.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
