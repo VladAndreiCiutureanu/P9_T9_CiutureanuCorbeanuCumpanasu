@@ -1,0 +1,27 @@
+﻿using AirlineFlightManagement.DataAccess.Data;
+using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
+using AirlineFlightManagement.Models.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
+{
+    public class ApiLogRepository : Repository<ApiLog>, IApiLogRepository
+    {
+        public ApiLogRepository(ApplicationDbContext db) : base(db)
+        {
+
+        }
+
+        public async Task<IEnumerable<ApiLog>> GetByDateRangeAsync(DateTime from, DateTime to)
+        {
+            return await _dbSet.Where(log => log.RequestTimestamp >= from && log.RequestTimestamp <= to).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ApiLog>> GetRecentAsync(int count)
+        {
+            return await _dbSet.OrderByDescending(log => log.RequestTimestamp).Take(count).ToListAsync();
+        }
+    }
+}
