@@ -1,8 +1,5 @@
-﻿using AirlineFlightManagement.DataAccess.Data;
+using AirlineFlightManagement.DataAccess.Data;
 using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
 {
@@ -10,7 +7,15 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
     {
         private readonly ApplicationDbContext _db;
 
-        public IAircraftRepository AircraftRepository { get; private set; }
+        public IAircraftRepository AircraftRepository { get; }
+        public IFlightRepository FlightRepository { get; }
+        public IFlightClassRepository FlightClassRepository { get; }
+        public IFlightSeatRepository FlightSeatRepository { get; }
+        public IPassengerProfileRepository PassengerProfileRepository { get; }
+        public IReservationRepository ReservationRepository { get; }
+        public IPaymentRepository PaymentRepository { get; }
+        public IApiLogRepository ApiLogRepository { get; }
+        public ISystemConfigurationRepository SystemConfigurationRepository { get; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -21,11 +26,6 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
         public async Task SaveAsync()
         {
             await _db.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            _db.Dispose();
         }
     }
 }

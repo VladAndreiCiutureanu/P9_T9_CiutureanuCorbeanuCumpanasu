@@ -1,8 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace AirlineFlightManagement.Models.Models
 {
@@ -11,15 +9,28 @@ namespace AirlineFlightManagement.Models.Models
         [Key]
         public int PassengerId { get; set; }
 
-        // Foreign key to the ApplicationUser
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser UserAccount { get; set; }
+        [Required]
+        public string UserId { get; set; } = string.Empty;
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public virtual ApplicationUser? UserAccount { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(50)]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required]
+        [Phone]
+        [MaxLength(30)]
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(250)]
+        public string Address { get; set; } = string.Empty;
 
         public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }

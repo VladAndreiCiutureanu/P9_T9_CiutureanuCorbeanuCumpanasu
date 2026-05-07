@@ -1,64 +1,87 @@
-﻿using AirlineFlightManagement.DataAccess.Data;
+using System.Linq.Expressions;
+using AirlineFlightManagement.DataAccess.Data;
 using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _db;
-        internal DbSet<T> dbSet;
+        protected readonly ApplicationDbContext _db;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet = _db.Set<T>();
-        }
-        public async Task AddAsync(T entity)
-        {
-            await dbSet.AddAsync(entity);
+            _dbSet = _db.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+        public async Task<T?> GetByIdAsync(object id)
         {
-            IQueryable<T> query = dbSet;
-            query = filter != null ? query.Where(filter) : query;
-            if(!string.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProperty.Trim());
-                }
-            }
-            return await query.ToListAsync();
+            return await _dbSet.FindAsync(id);
         }
 
-        public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public async Task<T?> GetAsync(
+            Expression<Func<T, bool>> filter,
+            bool tracked = true,
+            params Expression<Func<T, object>>[] includes)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = tracked ? _dbSet : _dbSet.AsNoTracking();
             query = query.Where(filter);
-            if (!string.IsNullOrEmpty(includeProperties))
+            foreach (var include in includes)
             {
-                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProperty.Trim());
-                }
+                query = query.Include(include);
             }
             return await query.FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync(
+            Expression<Func<T, bool>>? filter = null,
+            bool tracked = true,
+            params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = tracked ? _dbSet : _dbSet.AsNoTracking();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            return await query.ToListAsync();
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.AnyAsync(filter);
+        }
+
+        public async Task<int> CountAsync(Expression<Func<T, bool>>? filter = null)
+        {
+            return filter != null
+                ? await _dbSet.CountAsync(filter)
+                : await _dbSet.CountAsync();
+        }
+
+        public async Task AddAsync(T entity)
+        {
+            await _dbSet.AddAsync(entity);
+        }
+
+        public void Update(T entity)
+        {
+            _dbSet.Update(entity);
+        }
+
         public void Remove(T entity)
         {
-            dbSet.Remove(entity);
+            _dbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-            dbSet.RemoveRange(entities);
+            _dbSet.RemoveRange(entities);
         }
     }
 }

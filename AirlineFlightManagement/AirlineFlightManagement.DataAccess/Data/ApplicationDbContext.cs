@@ -1,4 +1,5 @@
-﻿using AirlineFlightManagement.Models.Models;
+using AirlineFlightManagement.Models.Enums;
+using AirlineFlightManagement.Models.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace AirlineFlightManagement.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<FlightSeat>()
                 .HasOne(fs => fs.Flight)
                 .WithMany(f => f.FlightSeats)
@@ -30,6 +32,48 @@ namespace AirlineFlightManagement.DataAccess.Data
                 .WithMany(fc => fc.FlightSeats)
                 .HasForeignKey(fs => fs.FlightClassId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Flight)
+                .WithMany(f => f.Reservations)
+                .HasForeignKey(r => r.FlightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // BR-4: a passenger may not hold more than one active reservation
+            // for the exact same flight. The filter excludes Cancelled rows.
+            modelBuilder.Entity<Reservation>()
+                .HasIndex(r => new { r.PassengerId, r.FlightId })
+                .IsUnique()
+                .HasFilter("[Status] <> 'Cancelled'");
+
+            // REQ-47: every completed payment must have a unique transaction id.
+            modelBuilder.Entity<Payment>()
+                .HasIndex(p => p.TransactionId)
+                .IsUnique();
+
+            modelBuilder.Entity<SystemConfiguration>()
+                .HasIndex(sc => sc.SettingKey)
+                .IsUnique();
+
+            modelBuilder.Entity<Flight>()
+                .Property(f => f.Status)
+                .HasConversion<string>()
+                .HasMaxLength(20);
+
+            modelBuilder.Entity<Reservation>()
+                .Property(r => r.Status)
+                .HasConversion<string>()
+                .HasMaxLength(20);
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Status)
+                .HasConversion<string>()
+                .HasMaxLength(20);
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.PaymentMethod)
+                .HasConversion<string>()
+                .HasMaxLength(20);
         }
     }
 }

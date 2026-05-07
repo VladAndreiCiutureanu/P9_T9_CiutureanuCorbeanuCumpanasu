@@ -1,16 +1,20 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace AirlineFlightManagement.Models.Models
 {
     public class Aircraft
     {
+        [Key]
         public int AircraftId { get; set; }
-        public string ModelName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string ModelName { get; set; } = string.Empty;
+
+        [Range(1, 1000)]
         public int MaxCapacity { get; set; }
 
-        // Navigation property for related Flights
         public virtual ICollection<Flight> Flights { get; set; } = new List<Flight>();
     }
 }

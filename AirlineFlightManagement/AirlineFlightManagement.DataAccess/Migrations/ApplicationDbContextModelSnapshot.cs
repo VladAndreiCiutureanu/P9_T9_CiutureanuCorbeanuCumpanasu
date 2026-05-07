@@ -35,7 +35,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("ModelName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("AircraftId");
 
@@ -51,16 +52,16 @@ namespace AirlineFlightManagement.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogId"));
 
                     b.Property<string>("ErrorCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ErrorMessage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("RequestParams")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<DateTime>("RequestTimestamp")
                         .HasColumnType("datetime2");
@@ -83,7 +84,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("AirlineName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
@@ -93,19 +95,23 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("Destination")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ExternalApiId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Source")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("FlightId");
 
@@ -124,7 +130,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("ClassName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("FlightId")
                         .HasColumnType("int");
@@ -158,7 +165,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("SeatNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("FlightSeatId");
 
@@ -179,19 +187,23 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -218,25 +230,31 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TransactionId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.HasKey("PaymentId");
 
                     b.HasIndex("ReservationId");
+
+                    b.HasIndex("TransactionId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -249,27 +267,35 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationId"));
 
+                    b.Property<int>("FlightId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FlightSeatId")
                         .HasColumnType("int");
 
                     b.Property<int>("PassengerId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime>("ReservationTimeStamp")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ReservationId");
 
+                    b.HasIndex("FlightId");
+
                     b.HasIndex("FlightSeatId");
 
-                    b.HasIndex("PassengerId");
+                    b.HasIndex("PassengerId", "FlightId")
+                        .IsUnique()
+                        .HasFilter("[Status] <> 'Cancelled'");
 
                     b.ToTable("Reservations");
                 });
@@ -287,13 +313,18 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
                     b.Property<string>("SettingKey")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SettingValue")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.HasKey("ConfigurationId");
+
+                    b.HasIndex("SettingKey")
+                        .IsUnique();
 
                     b.ToTable("SystemConfigurations");
                 });
@@ -584,6 +615,12 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
             modelBuilder.Entity("AirlineFlightManagement.Models.Models.Reservation", b =>
                 {
+                    b.HasOne("AirlineFlightManagement.Models.Models.Flight", "Flight")
+                        .WithMany("Reservations")
+                        .HasForeignKey("FlightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("AirlineFlightManagement.Models.Models.FlightSeat", "Seat")
                         .WithMany("Reservations")
                         .HasForeignKey("FlightSeatId")
@@ -595,6 +632,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
                         .HasForeignKey("PassengerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Flight");
 
                     b.Navigation("Passenger");
 
@@ -662,6 +701,8 @@ namespace AirlineFlightManagement.DataAccess.Migrations
                     b.Navigation("FlightClasses");
 
                     b.Navigation("FlightSeats");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("AirlineFlightManagement.Models.Models.FlightClass", b =>
@@ -686,8 +727,7 @@ namespace AirlineFlightManagement.DataAccess.Migrations
 
             modelBuilder.Entity("AirlineFlightManagement.Models.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("PassengerProfile")
-                        .IsRequired();
+                    b.Navigation("PassengerProfile");
                 });
 #pragma warning restore 612, 618
         }

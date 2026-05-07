@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace AirlineFlightManagement.DataAccess.Repositories.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IAircraftRepository AircraftRepository { get; }
-        Task SaveAsync();
+        IFlightRepository FlightRepository { get; }
+        IFlightClassRepository FlightClassRepository { get; }
+        IFlightSeatRepository FlightSeatRepository { get; }
+        IPassengerProfileRepository PassengerProfileRepository { get; }
+        IReservationRepository ReservationRepository { get; }
+        IPaymentRepository PaymentRepository { get; }
+        IApiLogRepository ApiLogRepository { get; }
+        ISystemConfigurationRepository SystemConfigurationRepository { get; }
 
+        Task SaveAsync();
     }
 }

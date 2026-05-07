@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace AirlineFlightManagement.Models.Models
 {
@@ -10,10 +8,14 @@ namespace AirlineFlightManagement.Models.Models
         [Key]
         public int ConfigurationId { get; set; }
 
-        public string SettingKey { get; set; }
-        public string SettingValue { get; set; }
-        public DateTime LastUpdated { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string SettingKey { get; set; } = string.Empty;
 
-        
+        [Required]
+        [MaxLength(2000)]
+        public string SettingValue { get; set; } = string.Empty;
+
+        public DateTime LastUpdated { get; set; }
     }
 }

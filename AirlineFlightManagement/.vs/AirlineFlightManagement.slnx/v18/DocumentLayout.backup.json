@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +19,52 @@
       "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\implementations\\aircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\implementations\\aircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\isystemconfigurationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\isystemconfigurationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\interfaces\\iaircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\interfaces\\iaircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iapilogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iapilogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\ireservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\ireservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\ipassengerprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\ipassengerprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightseatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightseatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightclassrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iflightclassrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iaircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iaircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\implementations\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\implementations\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\implementations\\aircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\implementations\\aircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\iaircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\iaircraftrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.dataaccess\\repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21D0078F-9DE0-44FE-B7E6-D9EFA8C159C4}|AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj|solutionrelative:airlineflightmanagement.dataaccess\\repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\implementations\\aircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\implementations\\aircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\interfaces\\iaircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\interfaces\\iaircraftservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,41 +74,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AircraftService.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
-              "RelativeToolTip": "AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAmwFEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ISystemConfigurationRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\ISystemConfigurationRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\ISystemConfigurationRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\ISystemConfigurationRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\ISystemConfigurationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T17:54:38.198Z"
+              "WhenOpened": "2026-05-07T18:37:28.902Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAircraftService.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
-              "RelativeToolTip": "AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "IApiLogRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IApiLogRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IApiLogRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IApiLogRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IApiLogRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T17:49:38.498Z"
+              "WhenOpened": "2026-05-07T18:35:17.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IReservationRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IReservationRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IReservationRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IReservationRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IReservationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:33:15.924Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "IPaymentRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:31:06.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T17:42:26.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\UnitOfWork.cs",
               "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\UnitOfWork.cs",
               "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\UnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-26T17:43:00.887Z",
               "EditorCaption": ""
@@ -76,38 +157,132 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
-              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "IFlightRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T17:42:26.801Z"
+              "WhenOpened": "2026-05-07T18:15:17.128Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
+              "Title": "IPassengerProfileRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPassengerProfileRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPassengerProfileRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPassengerProfileRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IPassengerProfileRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:28:34.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IFlightSeatRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightSeatRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightSeatRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightSeatRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightSeatRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:25:53.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IFlightClassRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightClassRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightClassRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightClassRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IFlightClassRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:18:40.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\Repository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\Repository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\Repository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\Repository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:04:27.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IRepository.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T18:03:58.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AircraftService.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
+              "RelativeToolTip": "AirlineFlightManagement.Services\\Implementations\\AircraftService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T17:54:38.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IAircraftService.cs",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
+              "RelativeToolTip": "AirlineFlightManagement.Services\\Interfaces\\IAircraftService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T17:49:38.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "AircraftRepository.cs",
               "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\AircraftRepository.cs",
               "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\AircraftRepository.cs",
               "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\AircraftRepository.cs",
               "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Implementations\\AircraftRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T17:34:29.956Z"
+              "WhenOpened": "2026-04-26T17:34:29.956Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "IAircraftRepository.cs",
               "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IAircraftRepository.cs",
               "RelativeDocumentMoniker": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IAircraftRepository.cs",
               "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IAircraftRepository.cs",
               "RelativeToolTip": "AirlineFlightManagement.DataAccess\\Repositories\\Interfaces\\IAircraftRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T17:33:33.456Z"
+              "WhenOpened": "2026-04-26T17:33:33.456Z",
+              "EditorCaption": ""
             }
           ]
         }

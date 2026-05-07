@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace AirlineFlightManagement.Models.Models
 {
@@ -12,8 +10,13 @@ namespace AirlineFlightManagement.Models.Models
 
         public DateTime RequestTimestamp { get; set; }
 
-        public string ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
-        public string RequestParams { get; set; }
+        [MaxLength(50)]
+        public string? ErrorCode { get; set; }
+
+        [MaxLength(2000)]
+        public string? ErrorMessage { get; set; }
+
+        [MaxLength(2000)]
+        public string? RequestParams { get; set; }
     }
 }
