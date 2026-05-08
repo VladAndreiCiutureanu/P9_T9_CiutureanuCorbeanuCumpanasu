@@ -14,6 +14,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+// Register Flight and API Services
+builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.ISystemConfigService, AirlineFlightManagement.Services.Implementations.SystemConfigService>();
+builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.ISerpApiClient, AirlineFlightManagement.Services.Implementations.MockSerpApiClient>();
+builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.IFlightService, AirlineFlightManagement.Services.Implementations.FlightService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
