@@ -20,7 +20,10 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
 
         public Task<Flight?> GetWithDetailsAsync(int flightId)
         {
+            // Includem Aircraft pentru ca BR-1 (overbooking prevention) are nevoie
+            // de Aircraft.MaxCapacity ca sa stie cate locuri are zborul.
             return _dbSet.AsNoTracking()
+                .Include(f => f.Aircraft)
                 .Include(f => f.FlightClasses)
                 .Include(f => f.FlightSeats)
                 .FirstOrDefaultAsync(f => f.FlightId == flightId);
