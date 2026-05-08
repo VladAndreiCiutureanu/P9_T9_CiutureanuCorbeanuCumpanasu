@@ -295,4 +295,3 @@ D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFl
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagementWeb\obj\Debug\net10.0\compressed\wzq3di9men-{0}-m9qm4tazc0-m9qm4tazc0.gz
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagementWeb\obj\Debug\net10.0\compressed\i9svt8iyz6-{0}-jjsuc0puko-jjsuc0puko.gz
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagementWeb\obj\Debug\net10.0\compressed\4v018n8zo5-{0}-9vr69e8ynj-9vr69e8ynj.gz
-D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagementWeb\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

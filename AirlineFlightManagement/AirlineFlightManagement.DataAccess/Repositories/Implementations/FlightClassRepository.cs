@@ -1,0 +1,23 @@
+﻿using AirlineFlightManagement.DataAccess.Data;
+using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
+using AirlineFlightManagement.Models.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
+{
+    public class FlightClassRepository : Repository<FlightClass>, IFlightClassRepository
+    {
+        public FlightClassRepository(ApplicationDbContext db) : base(db)
+        {
+        }
+
+        public async Task<IEnumerable<FlightClass>> GetByFlightAsync(int flightId)
+        {
+            return await _dbSet.AsNoTracking().Where(fc => fc.FlightId == flightId).ToListAsync();
+        }
+    }
+}

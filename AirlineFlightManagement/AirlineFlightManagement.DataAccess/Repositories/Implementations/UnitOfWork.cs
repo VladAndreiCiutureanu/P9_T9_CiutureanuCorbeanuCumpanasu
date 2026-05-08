@@ -21,6 +21,14 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
         {
             _db = db;
             AircraftRepository = new AircraftRepository(_db);
+            FlightRepository = new FlightRepository(_db);
+            FlightClassRepository = new FlightClassRepository(_db);
+            FlightSeatRepository = new FlightSeatRepository(_db);
+            PassengerProfileRepository = new PassengerProfileRepository(_db);
+            ReservationRepository = new ReservationRepository(_db);
+            PaymentRepository = new PaymentRepository(_db);
+            ApiLogRepository = new ApiLogRepository(_db);
+            SystemConfigurationRepository = new SystemConfigurationRepository(_db);
         }
 
         public async Task SaveAsync()

@@ -1,0 +1,41 @@
+﻿using AirlineFlightManagement.DataAccess.Data;
+using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
+using AirlineFlightManagement.Models.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
+{
+    public class PaymentRepository : Repository<Payment>, IPaymentRepository
+    {
+        public PaymentRepository(ApplicationDbContext db) : base(db)
+        {
+        }
+
+        public async Task<IEnumerable<Payment>> GetByDateRangeAsync(DateTime from, DateTime to)
+        {
+            return await _dbSet.AsNoTracking()
+                .Where(p => p.TransactionDate >= from && p.TransactionDate <= to)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Payment>> GetByPassengerIdAsync(int passengerId)
+        {
+            return await _dbSet.AsNoTracking().Where(p => p.Reservation.PassengerId == passengerId)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Payment>> GetByReservationAsync(int reservationId)
+        {
+            return await _dbSet.AsNoTracking().Where(p => p.ReservationId == reservationId)
+                .ToListAsync();
+        }
+
+        public Task<Payment?> GetByTransactionIdAsync(string transactionId)
+        {
+            return _dbSet.AsNoTracking().FirstOrDefaultAsync(p => p.TransactionId == transactionId);
+        }
+    }
+}

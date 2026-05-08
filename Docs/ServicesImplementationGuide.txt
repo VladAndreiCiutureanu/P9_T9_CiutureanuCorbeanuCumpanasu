@@ -1,0 +1,638 @@
+==============================================================================
+  GHID DE IMPLEMENTARE - SERVICES LAYER
+  Information System for Airline Flight Management
+==============================================================================
+
+Acest document descrie pentru fiecare serviciu:
+  - Responsabilitatea
+  - Dependintele de injectat
+  - Pasii de implementare pentru fiecare metoda
+  - Referinte la SRS / Business Rules
+  - Capcane de evitat
+
+Toate serviciile traiesc in:
+  AirlineFlightManagement.Services/Implementations/
+
+Toate folosesc IUnitOfWork (deja injectat in AircraftService ca exemplu).
+Inregistrare in DI in Program.cs:
+  services.AddScoped<IXxxService, XxxService>();
+
+Convocare in controllere prin DI standard.
+
+==============================================================================
+  1. IAuthService
+==============================================================================
+
+RESPONSABILITATE:
+  Inregistrare, login, logout, atribuire roluri, dezactivare cont.
+  Folosește ASP.NET Core Identity sub capota.
+
+DEPENDINTE:
+  - UserManager<ApplicationUser>
+  - SignInManager<ApplicationUser>
+  - RoleManager<IdentityRole>
+  - IUnitOfWork (pentru a crea PassengerProfile dupa user)
+
+NOTA: Trebuie adaugata referinta NuGet `Microsoft.AspNetCore.Identity` in
+csproj-ul Services daca nu exista (DataAccess o are deja). Verifica.
+
+------------------------------------------------------------------------------
+  RegisterAsync(email, password, firstName, lastName, phoneNumber, address)
+------------------------------------------------------------------------------
+PASI:
+  1. Verifica daca email-ul exista deja (UserManager.FindByEmailAsync).
+     Daca da, returneaza AuthResult.Fail("Email deja inregistrat").
+  2. Creeaza ApplicationUser { Email, UserName = email, IsActive = true }.
+  3. Apeleaza UserManager.CreateAsync(user, password).
+     Daca esueaza (parola slaba etc.), returneaza AuthResult.Fail cu erorile.
+  4. Atribuie rolul "Customer" implicit (UserManager.AddToRoleAsync).
+  5. Creeaza PassengerProfile cu UserId = user.Id si campurile primite.
+  6. _uow.PassengerProfileRepository.AddAsync(profile);
+     await _uow.SaveAsync();
+  7. Daca pasul 5-6 esueaza, sterge userul creat la pasul 3
+     (pentru atomicitate, deoarece Identity nu folosește acelasi DbContext
+     in tranzactie usoara cu repository-urile).
+  8. Returneaza AuthResult.Ok(user.Id).
+
+REQ ACOPERITE: REQ-3, REQ-5, REQ-6, REQ-11, REQ-12, REQ-19
+
+CAPCANE:
+  - Identity valideaza parola (minim 8 caractere, alfanumeric etc.) -
+    configureaza politica in Program.cs.
+  - Daca creezi ApplicationUser dar PassengerProfile esueaza, ramane
+    user "orfan" - foloseste try/catch + UserManager.DeleteAsync ca fallback.
+
+------------------------------------------------------------------------------
+  LoginAsync(email, password, rememberMe)
+------------------------------------------------------------------------------
+PASI:
+  1. SignInManager.PasswordSignInAsync(email, password, rememberMe, false).
+  2. Daca user.IsActive == false, returneaza Fail si ApeleaazaSignOutAsync.
+  3. Daca succes, returneaza AuthResult.Ok(user.Id).
+
+------------------------------------------------------------------------------
+  LogoutAsync()
+------------------------------------------------------------------------------
+  await _signInManager.SignOutAsync();
+
+------------------------------------------------------------------------------
+  AssignRoleAsync(userId, roleName)
+------------------------------------------------------------------------------
+PASI:
+  1. Verifica ca apelantul e Admin (in controller, nu in service - foloseste
+     [Authorize(Roles = "Administrator")] pe controller).
+  2. UserManager.FindByIdAsync(userId).
+  3. Verifica ca rolul exista (RoleManager.RoleExistsAsync). Daca nu, creeaza-l.
+  4. UserManager.AddToRoleAsync(user, roleName).
+  5. Returneaza AuthResult.Ok(userId).
+
+REQ-7, BR-3.
+
+------------------------------------------------------------------------------
+  DeactivateUserAsync(userId)
+------------------------------------------------------------------------------
+PASI:
+  1. UserManager.FindByIdAsync(userId).
+  2. user.IsActive = false;
+  3. UserManager.UpdateAsync(user).
+  4. Optional: SignOutAsync daca e userul curent.
+
+REQ-18 — NU stergi din DB, doar marchezi inactiv.
+
+
+==============================================================================
+  2. IPassengerService
+==============================================================================
+
+RESPONSABILITATE:
+  CRUD pe PassengerProfile (separat de Identity).
+
+DEPENDINTE:
+  - IUnitOfWork
+
+------------------------------------------------------------------------------
+  GetByUserIdAsync(userId)
+------------------------------------------------------------------------------
+  return await _uow.PassengerProfileRepository.GetByUserIdAsync(userId);
+
+------------------------------------------------------------------------------
+  GetByIdAsync(passengerId)
+------------------------------------------------------------------------------
+  return await _uow.PassengerProfileRepository.GetByIdAsync(passengerId);
+
+------------------------------------------------------------------------------
+  GetAllAsync()
+------------------------------------------------------------------------------
+  return await _uow.PassengerProfileRepository.GetAllAsync(tracked: false);
+
+REQ-17.
+
+------------------------------------------------------------------------------
+  UpdateProfileAsync(userId, firstName, lastName, phoneNumber, address)
+------------------------------------------------------------------------------
+PASI:
+  1. var profile = await _uow.PassengerProfileRepository.GetByUserIdAsync(userId);
+  2. Daca profile == null, throw KeyNotFoundException.
+  3. Validare campuri (lungimi, format telefon - opțional, ai deja [Phone]
+     pe entity).
+  4. Modifica proprietatile.
+  5. _uow.PassengerProfileRepository.Update(profile);
+     await _uow.SaveAsync();
+
+REQ-15.
+
+CAPCANE:
+  - GetByUserIdAsync foloseste AsNoTracking - daca vrei sa modifici
+    si sa salvezi, fa un GetAsync(filter, tracked: true) sau redenumeste
+    metoda.
+
+
+==============================================================================
+  3. ISystemConfigService
+==============================================================================
+
+RESPONSABILITATE:
+  Citire / scriere setari globale (cu accent pe credentialele Amadeus).
+
+DEPENDINTE:
+  - IUnitOfWork
+
+CONSTANTE:
+  Defineste in clasa o constanta:
+    private const string AMADEUS_API_KEY = "AmadeusApiKey";
+
+------------------------------------------------------------------------------
+  GetValueAsync(key)
+------------------------------------------------------------------------------
+  return await _uow.SystemConfigurationRepository.GetValueAsync(key);
+
+------------------------------------------------------------------------------
+  SetValueAsync(key, value)
+------------------------------------------------------------------------------
+PASI:
+  1. var config = await _uow.SystemConfigurationRepository.GetByKeyAsync(key);
+  2. Daca null, creeaza nou: SystemConfiguration { SettingKey = key,
+     SettingValue = value, LastUpdated = DateTime.UtcNow };
+     await _uow.SystemConfigurationRepository.AddAsync(config);
+  3. Daca exista, actualizeaza: config.SettingValue = value;
+     config.LastUpdated = DateTime.UtcNow;
+     _uow.SystemConfigurationRepository.Update(config);
+  4. await _uow.SaveAsync();
+
+------------------------------------------------------------------------------
+  GetAmadeusApiKeyAsync() / UpdateAmadeusApiKeyAsync(newKey)
+------------------------------------------------------------------------------
+  Pur si simplu deleaga la GetValueAsync(AMADEUS_API_KEY) /
+  SetValueAsync(AMADEUS_API_KEY, newKey).
+
+REQ-27.
+
+
+==============================================================================
+  4. IAmadeusClient
+==============================================================================
+
+RESPONSABILITATE:
+  Wrapper peste API-ul Amadeus. Ascunde detaliile HTTP.
+  Logheaza erori in ApiLog.
+
+DEPENDINTE:
+  - HttpClient (injectat via IHttpClientFactory)
+  - ISystemConfigService (pentru API key)
+  - IUnitOfWork (pentru ApiLog)
+  - ILogger<AmadeusClient>
+
+NOTA: Adauga in Program.cs:
+  builder.Services.AddHttpClient<IAmadeusClient, AmadeusClient>(client =>
+  {
+      client.BaseAddress = new Uri("https://test.api.amadeus.com/");
+      client.Timeout = TimeSpan.FromSeconds(5); // REQ 5.1 External API Latency
+  });
+
+------------------------------------------------------------------------------
+  SearchAsync(source, destination, date)
+------------------------------------------------------------------------------
+PASI:
+  1. Obtine API key din _configService.
+  2. Construieste URL-ul (atentie la encoding).
+  3. Trimite request, deserializeaza JSON in ExternalFlightInfo[].
+  4. La timeout / 4xx / 5xx:
+     - Logheaza in ApiLog (RequestTimestamp, ErrorCode, ErrorMessage,
+       RequestParams).
+     - Returneaza Enumerable.Empty<ExternalFlightInfo>() (fail-safe gracefully).
+
+REQ-20, REQ-22, REQ-28, 5.2 External API Fail-Safe.
+
+CAPCANA:
+  - NU arunca exceptie spre layer-ul de servicii. Returneaza lista goala.
+    Ce vine dupa (FlightService) trebuie sa stie ca poate primi 0 rezultate.
+
+------------------------------------------------------------------------------
+  GetByExternalIdAsync(externalApiId)
+------------------------------------------------------------------------------
+  Cere zborul specific. Folosit la admin import.
+
+------------------------------------------------------------------------------
+  VerifyAvailabilityAsync(externalApiId)
+------------------------------------------------------------------------------
+  Cheama API-ul pentru un singur zbor; returneaza true daca e Scheduled
+  si nu e fully booked.
+
+REQ-25.
+
+CAPCANA:
+  - In MVP, daca nu ai inca acces la API real, mockuiește metoda sa returneze
+    cateva rezultate hardcodate (sau citeste dintr-un JSON local). Astfel
+    coleg C poate testa booking-ul fara coleg B.
+
+
+==============================================================================
+  5. IFlightService
+==============================================================================
+
+RESPONSABILITATE:
+  Search merge (DB-first + API). Admin CRUD.
+
+DEPENDINTE:
+  - IUnitOfWork
+  - IAmadeusClient
+
+------------------------------------------------------------------------------
+  SearchAsync(source, destination, date)
+------------------------------------------------------------------------------
+PASI:
+  1. Obtine zborurile locale care matcheaza:
+     var local = await _uow.FlightRepository.SearchAsync(source, destination, date);
+     var localList = local.ToList();
+  2. Obtine zborurile API:
+     var api = await _amadeusClient.SearchAsync(source, destination, date);
+  3. Construieste HashSet cu ExternalApiId-urile locale:
+     var localIds = localList.Select(f => f.ExternalApiId).ToHashSet();
+  4. Filtreaza din API doar cele care NU exista local:
+     var apiOnly = api.Where(a => !localIds.Contains(a.ExternalApiId));
+  5. Mapeaza local -> FlightSearchResult (cu IsFromLocalDb = true,
+     LocalFlightId set).
+  6. Mapeaza apiOnly -> FlightSearchResult (cu IsFromLocalDb = false,
+     LocalFlightId = null).
+  7. Concateneaza local primii, apiOnly dupa.
+
+REQ-22, REQ-26.
+
+CAPCANA:
+  - Local trebuie sa includa FlightClasses pentru a popula FlightClassInfo.
+    SearchAsync din repository momentan nu include - poti face un Include
+    inline sau adauga overload.
+
+------------------------------------------------------------------------------
+  GetWithDetailsAsync(flightId)
+------------------------------------------------------------------------------
+  return await _uow.FlightRepository.GetWithDetailsAsync(flightId);
+
+------------------------------------------------------------------------------
+  ImportFromApiAsync(externalApiId)
+------------------------------------------------------------------------------
+PASI:
+  1. var existing = await _uow.FlightRepository.GetByExternalApiIdAsync(externalApiId);
+  2. Daca exista, returneaza-l.
+  3. Cere de la API: var info = await _amadeusClient.GetByExternalIdAsync(externalApiId);
+  4. Daca null, throw InvalidOperationException("Zbor inexistent in API").
+  5. Mapeaza la entity Flight + FlightClasses + FlightSeats (genereaza locuri
+     dupa Aircraft.MaxCapacity sau dupa info.TotalSeats).
+  6. Asigneaza un Aircraft potrivit (AircraftId) - poate pre-exista o lista
+     de aircraft, sau gaseste pe modelul cel mai apropiat.
+  7. _uow.FlightRepository.AddAsync(flight); await _uow.SaveAsync();
+  8. Returneaza zborul nou creat (cu FlightId populat).
+
+REQ-24.
+
+------------------------------------------------------------------------------
+  UpdateClassPriceAsync(flightClassId, newPrice)
+------------------------------------------------------------------------------
+PASI:
+  1. Validare: newPrice > 0.
+  2. var fc = await _uow.FlightClassRepository.GetByIdAsync(flightClassId);
+  3. Daca null, throw KeyNotFoundException.
+  4. fc.Price = newPrice;
+  5. _uow.FlightClassRepository.Update(fc);
+  6. await _uow.SaveAsync();
+
+BR-3.
+
+------------------------------------------------------------------------------
+  CancelFlightAsync(flightId)
+------------------------------------------------------------------------------
+PASI:
+  1. var flight = await _uow.FlightRepository.GetByIdAsync(flightId);
+  2. Daca null, throw KeyNotFoundException.
+  3. Verifica REQ-39:
+     bool hasActive = await _uow.FlightRepository.HasActiveReservationsAsync(flightId);
+     if (hasActive)
+        throw new InvalidOperationException("Zborul are rezervari active.");
+  4. flight.Status = FlightStatus.Cancelled;
+  5. _uow.FlightRepository.Update(flight);
+  6. await _uow.SaveAsync();
+  7. Optional: notifica pasagerii afectati (out of scope MVP).
+
+BR-3, REQ-39.
+
+
+==============================================================================
+  6. IReservationService — CEL MAI COMPLEX
+==============================================================================
+
+RESPONSABILITATE:
+  Booking workflow cu enforcement BR-1, BR-2, BR-4. Tranzactie atomica.
+
+DEPENDINTE:
+  - IUnitOfWork
+  - IFlightService (pentru ImportFromApiAsync)
+  - IAmadeusClient (pentru REQ-25 verify availability)
+  - ApplicationDbContext (pentru BeginTransactionAsync)
+
+NOTA: pentru tranzactii expune _db din UnitOfWork sau injecteaza direct
+ApplicationDbContext alaturi de UoW. Cea mai curata varianta: adauga in
+IUnitOfWork o metoda BeginTransactionAsync().
+
+------------------------------------------------------------------------------
+  CreateAsync(passengerId, flightId, flightClassId, seatId?)
+------------------------------------------------------------------------------
+PASI:
+  1. BR-4: Verifica unicitate
+     bool hasActive = await _uow.ReservationRepository.HasActiveReservationAsync(passengerId, flightId);
+     if (hasActive) throw new InvalidOperationException("Aveti deja o rezervare activa pe acest zbor.");
+
+  2. Verifica ca zborul exista local; daca nu, importa din API:
+     var flight = await _uow.FlightRepository.GetByIdAsync(flightId);
+     if (flight == null) throw new KeyNotFoundException();
+
+  3. REQ-25: Verifica disponibilitate API:
+     bool available = await _amadeusClient.VerifyAvailabilityAsync(flight.ExternalApiId);
+     if (!available) throw new InvalidOperationException("Zbor anulat sau full.");
+
+  4. BR-1: Verifica capacitate locala:
+     int sold = await _uow.ReservationRepository.CountConfirmedForFlightAsync(flightId);
+     int capacity = aircraft.MaxCapacity;
+     if (sold >= capacity) throw new InvalidOperationException("Zbor full.");
+
+  5. Selecteaza locul: daca seatId == null, ia primul disponibil din clasa:
+     var seats = await _uow.FlightSeatRepository.GetAvailableAsync(flightId, flightClassId);
+     var seat = seats.FirstOrDefault();
+     if (seat == null) throw new InvalidOperationException("Niciun loc disponibil.");
+
+  6. Calculeaza pret (REQ-38):
+     var fc = await _uow.FlightClassRepository.GetByIdAsync(flightClassId);
+     var totalPrice = fc.Price; // pentru un singur loc
+
+  7. INCEPE TRANZACTIA (foarte important pentru BR-1 race condition):
+     using var tx = await _db.Database.BeginTransactionAsync();
+
+  8. Marcheaza locul ca ocupat:
+     seat.IsAvailable = false;
+     _uow.FlightSeatRepository.Update(seat);
+
+  9. Creeaza Reservation:
+     var reservation = new Reservation {
+       PassengerId, FlightId, FlightSeatId = seat.FlightSeatId,
+       TotalPrice = totalPrice,
+       ReservationTimeStamp = DateTime.UtcNow,
+       Status = ReservationStatus.Pending
+     };
+     await _uow.ReservationRepository.AddAsync(reservation);
+
+  10. await _uow.SaveAsync();
+      await tx.CommitAsync();
+
+  11. Returneaza reservation.
+
+CAPCANE:
+  - DACA SAREI vreun pas, BR-4 / BR-1 vor fi verificate de DB (unique index +
+    seat IsAvailable). Dar exceptia DB e mai urata decat exceptia ta.
+  - REQ-32: pasul 8-9 trebuie sa fie ATOMIC. De aceea tranzactia.
+  - Daca tx.Commit esueaza, rollback automat la dispose.
+
+REQ-25, REQ-30, REQ-31, REQ-32, REQ-33, REQ-34, REQ-37, REQ-38, BR-1, BR-4.
+
+------------------------------------------------------------------------------
+  CancelAsync(reservationId, passengerId)
+------------------------------------------------------------------------------
+PASI:
+  1. var r = await _uow.ReservationRepository.GetWithDetailsAsync(reservationId);
+  2. Daca null, throw KeyNotFoundException.
+  3. Daca r.PassengerId != passengerId, throw UnauthorizedAccessException.
+     (Pasagerul anuleaza doar propriile rezervari.)
+  4. Daca r.Status == Cancelled, throw InvalidOperationException("Deja anulata.").
+  5. BR-2: minim 24h inainte de plecare:
+     var hoursUntilDeparture = (r.Flight.DepartureTime - DateTime.UtcNow).TotalHours;
+     if (hoursUntilDeparture < 24)
+        throw new InvalidOperationException("Anulare permisa doar cu minim 24h inainte de plecare.");
+  6. r.Status = ReservationStatus.Cancelled;
+  7. r.Seat.IsAvailable = true; // REQ-41 elibereaza locul
+     _uow.FlightSeatRepository.Update(r.Seat);
+  8. _uow.ReservationRepository.Update(r);
+  9. await _uow.SaveAsync();
+
+REQ-40, REQ-41, BR-2.
+
+CAPCANA:
+  - Daca rezervarea era ConfirmedAndPaid, trebuie initializata refund?
+    Out of scope pentru MVP. Documenteaza in commit.
+
+------------------------------------------------------------------------------
+  GetHistoryAsync(passengerId)
+------------------------------------------------------------------------------
+  return await _uow.ReservationRepository.GetByPassengerAsync(passengerId);
+
+REQ-36.
+
+------------------------------------------------------------------------------
+  GetManifestAsync(flightId)
+------------------------------------------------------------------------------
+  return await _uow.ReservationRepository.GetManifestAsync(flightId);
+
+REQ-35.
+
+------------------------------------------------------------------------------
+  GetWithDetailsAsync(reservationId)
+------------------------------------------------------------------------------
+  return await _uow.ReservationRepository.GetWithDetailsAsync(reservationId);
+
+
+==============================================================================
+  7. IPaymentService
+==============================================================================
+
+RESPONSABILITATE:
+  Procesare plata cu rollback automat (REQ 5.2).
+
+DEPENDINTE:
+  - IUnitOfWork
+  - ApplicationDbContext (pentru BeginTransactionAsync)
+
+------------------------------------------------------------------------------
+  ProcessAsync(reservationId, method, amount)
+------------------------------------------------------------------------------
+PASI:
+  1. var reservation = await _uow.ReservationRepository.GetWithDetailsAsync(reservationId);
+  2. Daca null, return PaymentResult.Fail("Rezervare inexistenta.").
+  3. Daca reservation.Status != Pending, return Fail("Rezervare nu e Pending.").
+  4. Daca amount != reservation.TotalPrice, return Fail("Suma incorecta.").
+
+  5. INCEPE TRANZACTIA:
+     using var tx = await _db.Database.BeginTransactionAsync();
+
+  6. Genereaza TransactionId unic:
+     var transactionId = Guid.NewGuid().ToString("N");
+
+  7. Creeaza Payment:
+     var payment = new Payment {
+       ReservationId, TransactionId,
+       PaymentMethod = method,
+       TransactionDate = DateTime.UtcNow,
+       Amount = amount,
+       Status = PaymentStatus.Pending
+     };
+     await _uow.PaymentRepository.AddAsync(payment);
+
+  8. (In aplicatie reala: aici aplezi gateway extern - Stripe, etc.)
+     Pentru MVP, simuleaza succesul.
+
+  9. payment.Status = PaymentStatus.Completed;
+     reservation.Status = ReservationStatus.ConfirmedAndPaid;
+     _uow.PaymentRepository.Update(payment);
+     _uow.ReservationRepository.Update(reservation);
+
+  10. await _uow.SaveAsync();
+      await tx.CommitAsync();
+
+  11. return PaymentResult.Ok(transactionId);
+
+CAPCANA:
+  - Daca apelul la gateway extern esueaza intre pas 7 si 9:
+    Catch + tx.RollbackAsync() => Reservation ramane Pending, Payment se sterge.
+    REQ 5.2 exact asta cere.
+  - REQ-47: TransactionId UNIC - indexul DB il enforce.
+  - 5.3 PCI-DSS: NU stocam date de card. PaymentMethod e doar enum.
+
+REQ-42, REQ-43, REQ-45, REQ-47, 5.2.
+
+------------------------------------------------------------------------------
+  GetByReservationAsync(reservationId)
+------------------------------------------------------------------------------
+  return await _uow.PaymentRepository.GetByReservationAsync(reservationId);
+
+------------------------------------------------------------------------------
+  GetHistoryAsync(passengerId)
+------------------------------------------------------------------------------
+  return await _uow.PaymentRepository.GetByPassengerIdAsync(passengerId);
+
+
+==============================================================================
+  8. IReportService
+==============================================================================
+
+RESPONSABILITATE:
+  Rapoarte agregate pentru Admin / Staff.
+
+DEPENDINTE:
+  - IUnitOfWork
+
+------------------------------------------------------------------------------
+  GetFlightOccupancyAsync(flightId)
+------------------------------------------------------------------------------
+PASI:
+  1. var flight = await _uow.FlightRepository.GetWithDetailsAsync(flightId);
+  2. Daca null, throw KeyNotFoundException.
+  3. int total = await _uow.FlightSeatRepository.CountAvailableAsync(flightId)
+                + await _uow.FlightSeatRepository.CountSoldAsync(flightId);
+     (sau direct flight.Aircraft.MaxCapacity daca ai inclus Aircraft).
+  4. int sold = await _uow.FlightSeatRepository.CountSoldAsync(flightId);
+  5. Returneaza OccupancyReport populat (procentul se calculeaza in clasa).
+
+REQ-46.
+
+------------------------------------------------------------------------------
+  GetOccupancyForRangeAsync(from, to)
+------------------------------------------------------------------------------
+PASI:
+  1. var flights = await _uow.FlightRepository.GetAllAsync(
+       filter: f => f.DepartureTime >= from && f.DepartureTime <= to,
+       tracked: false);
+  2. Pentru fiecare zbor, GetFlightOccupancyAsync(flightId).
+  3. Aggregate intr-o lista.
+
+OPTIMIZARE: Foloseste un singur query SQL cu GROUP BY pentru performanta
+mai buna. Versiunea naive de mai sus genereaza N+1 queries.
+
+------------------------------------------------------------------------------
+  GetRevenueAsync(from, to)
+------------------------------------------------------------------------------
+PASI:
+  1. var payments = await _uow.PaymentRepository.GetByDateRangeAsync(from, to);
+  2. Filtreaza doar Status == Completed.
+  3. GroupBy(p => p.TransactionDate.Date).
+  4. Pentru fiecare grup: FinancialReportRow {
+       Date, TransactionsCount = count, TotalRevenue = sum(Amount) }.
+
+REQ-44.
+
+
+==============================================================================
+  ORDINEA DE IMPLEMENTARE (RECOMANDATA)
+==============================================================================
+
+Saptamana 1:
+  - Coleg A: IAuthService + IPassengerService
+  - Coleg B: ISystemConfigService + IAmadeusClient (cu mock JSON local
+    initial pentru a debloca colegul C)
+  - Coleg C: schiteaza interfetele de controllere si ViewModels-urile
+
+Saptamana 2:
+  - Coleg A: AccountController + ProfileController + Views
+  - Coleg B: IFlightService + FlightController (search public, admin CRUD)
+  - Coleg C: IReservationService + ReservationController + Views
+
+Saptamana 3:
+  - Coleg C: IPaymentService + PaymentController + Views
+  - Coleg B: integreaza API real Amadeus (inlocuieste mock-ul)
+  - Coleg A: roleManagement Views pentru admin
+
+Saptamana 4:
+  - Toti: IReportService + admin dashboards
+  - Toti: testare integrata, polish UI
+
+
+==============================================================================
+  CHECKLIST FINAL INAINTE DE COMMIT
+==============================================================================
+
+  [ ] Build curat (0 warnings, 0 errors)
+  [ ] Toate metodele async folosesc await
+  [ ] Validari de input (null check, range check)
+  [ ] Try/catch unde apelezi external (Amadeus, Stripe)
+  [ ] Loguri pentru erori (ApiLog la failure API)
+  [ ] Tranzactii la operatiile multi-entity (booking, payment)
+  [ ] AsNoTracking la query-urile read-only
+  [ ] DI registrat in Program.cs:
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IPassengerService, PassengerService>();
+        services.AddScoped<ISystemConfigService, SystemConfigService>();
+        services.AddHttpClient<IAmadeusClient, AmadeusClient>();
+        services.AddScoped<IFlightService, FlightService>();
+        services.AddScoped<IReservationService, ReservationService>();
+        services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IReportService, ReportService>();
+
+
+==============================================================================
+  REFERINTE
+==============================================================================
+
+  - Docs/SRS.pdf - cerintele functionale (REQ-1 .. REQ-50, BR-1 .. BR-4)
+  - Docs/Diagrams/RelationalModelDiagram.png - schema DB
+  - Docs/Diagrams/Class.png - clase
+  - Models in AirlineFlightManagement.Models/Models/
+  - Repositories in AirlineFlightManagement.DataAccess/Repositories/
+
+==============================================================================
+  END OF GUIDE
+==============================================================================
