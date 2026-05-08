@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirlineFlightManagement.Models.Models;
 using AirlineFlightManagement.Services.Interfaces;
+using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
 
 namespace AirlineFlightManagement.Services.Implementations
 {
@@ -11,22 +12,58 @@ namespace AirlineFlightManagement.Services.Implementations
     {
         private readonly ISerpApiClient _serpApiClient;
         private readonly ISystemConfigService _configService;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public FlightService(ISerpApiClient serpApiClient, ISystemConfigService configService)
+        public FlightService(ISerpApiClient serpApiClient, ISystemConfigService configService, IUnitOfWork unitOfWork)
         {
             _serpApiClient = serpApiClient;
             _configService = configService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Flight>> GetAvailableFlightsAsync(string source, string destination, DateTime departureDate)
         {
-            // luam din mock
             var rawFlights = await _serpApiClient.SearchFlightsAsync(source, destination, departureDate);
 
-            // cerem adaosul
+            // Fetch the default aircraft, or create it if no aircrafts exist in the database yet
+            var aircrafts = await _unitOfWork.AircraftRepository.GetAllAsync();
+            var targetAircraft = aircrafts.FirstOrDefault();
+
+            if (targetAircraft == null)
+            {
+                targetAircraft = new Aircraft
+                {
+                    ModelName = "External API Default Aircraft",
+                    MaxCapacity = 200 // Some default capacity
+                };
+                await _unitOfWork.AircraftRepository.AddAsync(targetAircraft);
+                await _unitOfWork.SaveAsync(); 
+            }
+
+            // Verificăm și salvăm zborurile în baza de date dacă nu există deja
+            var existingFlights = await _unitOfWork.FlightRepository.GetAllAsync();
+            foreach(var flight in rawFlights)
+            {
+                // Ignorăm zborurile false de eroare (care au id-ul de EROARE API) la salvare
+                if (flight.Source != "EROARE" && !existingFlights.Any(f => f.ExternalApiId == flight.ExternalApiId))
+                {
+                    flight.AircraftId = targetAircraft.AircraftId;
+                    await _unitOfWork.FlightRepository.AddAsync(flight);
+                }
+            }
+            // Save inside a try block just in case
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log or swallow if the db fails again just to avoid crashing the view
+                Console.WriteLine("Could not save to db: " + ex.Message);
+            }
+
             var markup = await _configService.GetPlatformMarkupAsync();
 
-            // modificam prețul din clasele de zbor conform adaosului
             var updatedFlights = rawFlights.ToList();
             foreach(var flight in updatedFlights)
             {

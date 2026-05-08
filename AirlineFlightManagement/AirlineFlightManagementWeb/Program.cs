@@ -14,9 +14,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+// Register Repositories
+builder.Services.AddScoped<AirlineFlightManagement.DataAccess.Repositories.Interfaces.IUnitOfWork, AirlineFlightManagement.DataAccess.Repositories.Implementations.UnitOfWork>();
+
 // Register Flight and API Services
+builder.Services.AddHttpClient<AirlineFlightManagement.Services.Interfaces.ISerpApiClient, AirlineFlightManagement.Services.Implementations.RealSerpApiClient>();
 builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.ISystemConfigService, AirlineFlightManagement.Services.Implementations.SystemConfigService>();
-builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.ISerpApiClient, AirlineFlightManagement.Services.Implementations.MockSerpApiClient>();
+builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.ISerpApiClient, AirlineFlightManagement.Services.Implementations.RealSerpApiClient>(); // Comută de la MockSerpApiClient la RealSerpApiClient
 builder.Services.AddScoped<AirlineFlightManagement.Services.Interfaces.IFlightService, AirlineFlightManagement.Services.Implementations.FlightService>();
 
 var app = builder.Build();

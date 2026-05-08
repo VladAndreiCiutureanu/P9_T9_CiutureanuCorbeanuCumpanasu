@@ -15,16 +15,32 @@ namespace AirlineFlightManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string source = "Bucuresti", string destination = "Londra")
+        public async Task<IActionResult> Index(string source, string destination, DateTime? departureDate)
         {
-            // cautam zborur
-            DateTime mockDate = DateTime.Now.AddDays(1);
+            // Dacă utilizatorul doar a intrat pe pagină (fără a face un request de căutare), setăm variabile goale/default
+            if (string.IsNullOrWhiteSpace(source) || string.IsNullOrWhiteSpace(destination) || !departureDate.HasValue)
+            {
+                ViewBag.Source = string.Empty;
+                ViewBag.Destination = string.Empty;
+                ViewBag.DepartureDate = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
 
-            var flights = await _flightService.GetAvailableFlightsAsync(source, destination, mockDate);
+                // Putem afișa un mesaj doar dacă a încercat să caute ceva dar a omis câmpuri
+                if (Request.Query.ContainsKey("source")) 
+                {
+                    ViewBag.ErrorMessage = "Toate câmpurile sunt obligatorii pentru căutare.";
+                }
 
-            // trimitem datele reale mai departe catre View 
+                // Returnăm view-ul cu o listă goală (niciun zbor)
+                return View(new List<AirlineFlightManagement.Models.Models.Flight>());
+            }
+
+            var searchDate = departureDate.Value;
+            var flights = await _flightService.GetAvailableFlightsAsync(source, destination, searchDate);
+
+            // Trimitem datele înapoi la View
             ViewBag.Source = source;
             ViewBag.Destination = destination;
+            ViewBag.DepartureDate = searchDate.ToString("yyyy-MM-dd");
 
             return View(flights);
         }
