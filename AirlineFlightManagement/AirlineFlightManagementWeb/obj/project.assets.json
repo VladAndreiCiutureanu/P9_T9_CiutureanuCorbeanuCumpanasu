@@ -3407,23 +3407,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vlad\\.nuget\\packages\\": {},
+    "C:\\Users\\cumpa\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj",
+      "projectUniqueName": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj",
       "projectName": "AirlineFlightManagementWeb",
-      "projectPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj",
-      "packagesPath": "C:\\Users\\Vlad\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\obj\\",
+      "projectPath": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj",
+      "packagesPath": "C:\\Users\\cumpa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vlad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cumpa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3439,14 +3439,14 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj": {
-              "projectPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj"
+            "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.DataAccess\\AirlineFlightManagement.DataAccess.csproj"
             },
-            "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Models\\AirlineFlightManagement.Models.csproj": {
-              "projectPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Models\\AirlineFlightManagement.Models.csproj"
+            "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Models\\AirlineFlightManagement.Models.csproj": {
+              "projectPath": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Models\\AirlineFlightManagement.Models.csproj"
             },
-            "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj": {
-              "projectPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj"
+            "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj": {
+              "projectPath": "C:\\Users\\cumpa\\source\\repos\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj"
             }
           }
         }
