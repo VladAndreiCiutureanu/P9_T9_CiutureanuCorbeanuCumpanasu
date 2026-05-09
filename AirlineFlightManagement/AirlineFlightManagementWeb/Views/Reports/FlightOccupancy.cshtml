@@ -1,0 +1,80 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.Report.FlightOccupancyViewModel
+@{
+    ViewData["Title"] = $"Ocupare zbor #{Model.Report.FlightId}";
+
+    string progressColor = Model.Report.OccupancyPercentage switch
+    {
+        >= 75m => "bg-success",
+        >= 25m => "bg-warning",
+        _      => "bg-danger"
+    };
+
+    int available = Model.Report.TotalSeats - Model.Report.SoldSeats;
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mb-0">Ocupare zbor #@Model.Report.FlightId</h1>
+                <a asp-action="Occupancy" class="btn btn-outline-secondary">Inapoi la lista</a>
+            </div>
+
+            @* ─── Card detalii zbor ─────────────────────────────────────── *@
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong>Detalii zbor</strong>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Companie</dt>
+                        <dd class="col-sm-8">@Model.Report.AirlineName</dd>
+
+                        <dt class="col-sm-4">Ruta</dt>
+                        <dd class="col-sm-8">@Model.Report.Source &rarr; @Model.Report.Destination</dd>
+
+                        <dt class="col-sm-4">Plecare</dt>
+                        <dd class="col-sm-8">@Model.Report.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+            </div>
+
+            @* ─── Card ocupare ──────────────────────────────────────────── *@
+            <div class="card">
+                <div class="card-header">
+                    <strong>Ocupare</strong>
+                </div>
+                <div class="card-body">
+
+                    @* Progress bar mare *@
+                    <div class="progress mb-3" style="height: 32px;">
+                        <div class="progress-bar @progressColor"
+                             role="progressbar"
+                             style="width: @Model.Report.OccupancyPercentage.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%;"
+                             aria-valuenow="@Model.Report.OccupancyPercentage.ToString("0", System.Globalization.CultureInfo.InvariantCulture)"
+                             aria-valuemin="0" aria-valuemax="100">
+                            @Model.Report.OccupancyPercentage.ToString("0.##")%
+                        </div>
+                    </div>
+
+                    @* Cifre detaliate *@
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h6 class="text-muted mb-1">Capacitate</h6>
+                            <h3>@Model.Report.TotalSeats</h3>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="text-muted mb-1">Vandute</h6>
+                            <h3 class="text-success">@Model.Report.SoldSeats</h3>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="text-muted mb-1">Disponibile</h6>
+                            <h3 class="text-primary">@available</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

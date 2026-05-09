@@ -1,0 +1,123 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.Report.OccupancyReportViewModel
+@{
+    ViewData["Title"] = "Raport ocupare";
+}
+
+@functions {
+    // Helper pentru culoarea progress bar-ului in functie de procent.
+    string ProgressColor(decimal pct) =>
+        pct switch
+        {
+            >= 75m => "bg-success",
+            >= 25m => "bg-warning",
+            _      => "bg-danger"
+        };
+}
+
+<div class="container mt-4">
+    <h1 class="mb-3">Raport ocupare zboruri</h1>
+
+    @* ─── Filtru de date ──────────────────────────────────────────────── *@
+    <form method="get" asp-action="Occupancy" class="row g-3 mb-4">
+        <div class="col-auto">
+            <label class="form-label">De la</label>
+            <input type="date" name="from"
+                   value="@(Model.From?.ToString("yyyy-MM-dd"))"
+                   class="form-control" />
+        </div>
+        <div class="col-auto">
+            <label class="form-label">Pana la</label>
+            <input type="date" name="to"
+                   value="@(Model.To?.ToString("yyyy-MM-dd"))"
+                   class="form-control" />
+        </div>
+        <div class="col-auto align-self-end">
+            <button type="submit" class="btn btn-primary">Aplica</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Inapoi</a>
+        </div>
+    </form>
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+
+    @* ─── Sumar agregat ───────────────────────────────────────────────── *@
+    @if (Model.Reports.Any())
+    {
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-1">Total zboruri</h6>
+                        <h3 class="mb-0">@Model.TotalFlights</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-1">Locuri vandute</h6>
+                        <h3 class="mb-0">@Model.TotalSold / @Model.TotalCapacity</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-1">Ocupare medie</h6>
+                        <h3 class="mb-0">@Model.AverageOccupancy.ToString("0.##")%</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @* ─── Tabel rezultate ─────────────────────────────────────────────── *@
+    @if (!Model.Reports.Any())
+    {
+        <div class="alert alert-info">Niciun zbor in intervalul selectat.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Companie</th>
+                        <th>Ruta</th>
+                        <th>Plecare</th>
+                        <th>Vandute / Total</th>
+                        <th style="min-width: 200px;">Ocupare</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Reports)
+                    {
+                        <tr>
+                            <td>@r.FlightId</td>
+                            <td>@r.AirlineName</td>
+                            <td>@r.Source &rarr; @r.Destination</td>
+                            <td>@r.DepartureTime.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>@r.SoldSeats / @r.TotalSeats</td>
+                            <td>
+                                <div class="progress" style="height: 24px;">
+                                    <div class="progress-bar @ProgressColor(r.OccupancyPercentage)"
+                                         role="progressbar"
+                                         style="width: @r.OccupancyPercentage.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%;"
+                                         aria-valuenow="@r.OccupancyPercentage.ToString("0", System.Globalization.CultureInfo.InvariantCulture)"
+                                         aria-valuemin="0" aria-valuemax="100">
+                                        @r.OccupancyPercentage.ToString("0.##")%
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a asp-action="FlightOccupancy" asp-route-flightId="@r.FlightId"
+                                   class="btn btn-sm btn-outline-primary">Detalii</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
