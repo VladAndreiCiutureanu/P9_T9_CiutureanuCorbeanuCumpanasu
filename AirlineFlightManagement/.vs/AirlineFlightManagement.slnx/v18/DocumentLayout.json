@@ -3,60 +3,8 @@
   "WorkspaceRootPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\report\\revenuereportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\report\\revenuereportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\report\\occupancyreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\report\\occupancyreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\report\\flightoccupancyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\report\\flightoccupancyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\payment\\processpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\payment\\processpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\payment\\paymenthistoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\payment\\paymenthistoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\payment\\paymentconfirmationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\payment\\paymentconfirmationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\reservation\\reservationdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\reservation\\reservationdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\reservation\\myreservationsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\reservation\\myreservationsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\reservation\\createreservationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\reservation\\createreservationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\implementations\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\implementations\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagement.services\\implementations\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD196B4E-E266-4E90-AFF5-0E7C17B44B10}|AirlineFlightManagement.Services\\AirlineFlightManagement.Services.csproj|solutionrelative:airlineflightmanagement.services\\implementations\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -71,172 +19,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ReportsController.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReportsController.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Controllers\\ReportsController.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReportsController.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Controllers\\ReportsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T17:47:11.603Z",
+              "Title": "History.cshtml",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-09T17:54:42.999Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RevenueReportViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\RevenueReportViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\RevenueReportViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\RevenueReportViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\RevenueReportViewModel.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAA4AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:52:25.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OccupancyReportViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\OccupancyReportViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\OccupancyReportViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\OccupancyReportViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\OccupancyReportViewModel.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:52:16.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FlightOccupancyViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\FlightOccupancyViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\FlightOccupancyViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\FlightOccupancyViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Report\\FlightOccupancyViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:52:13.87Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ProcessPaymentViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\ProcessPaymentViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\ProcessPaymentViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\ProcessPaymentViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\ProcessPaymentViewModel.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAABIAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:43:30.963Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PaymentHistoryViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentHistoryViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentHistoryViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentHistoryViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentHistoryViewModel.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:42:56.058Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PaymentConfirmationViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentConfirmationViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentConfirmationViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentConfirmationViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Payment\\PaymentConfirmationViewModel.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:41:53.312Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Controllers\\PaymentsController.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Controllers\\PaymentsController.cs",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAAAAIBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:38:03.166Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ReservationDetailsViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\ReservationDetailsViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\ReservationDetailsViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\ReservationDetailsViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\ReservationDetailsViewModel.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAABAAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:25:33.286Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MyReservationsViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\MyReservationsViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\MyReservationsViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\MyReservationsViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\MyReservationsViewModel.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAAB4AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:25:11.993Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CreateReservationViewModel.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAAAsAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:14:03.614Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReservationsController.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
-              "RelativeToolTip": "AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:11:45.843Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\PaymentService.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Implementations\\PaymentService.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\PaymentService.cs",
-              "RelativeToolTip": "AirlineFlightManagement.Services\\Implementations\\PaymentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T14:00:17.838Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ReportService.cs",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\ReportService.cs",
-              "RelativeDocumentMoniker": "AirlineFlightManagement.Services\\Implementations\\ReportService.cs",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagement.Services\\Implementations\\ReportService.cs",
-              "RelativeToolTip": "AirlineFlightManagement.Services\\Implementations\\ReportService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAB0AAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T13:59:25.504Z"
             }
           ]
         }
