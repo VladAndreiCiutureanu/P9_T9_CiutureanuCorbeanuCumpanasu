@@ -1,0 +1,62 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.Reservation.ManifestViewModel
+@{
+    ViewData["Title"] = $"Manifest zbor #{Model.FlightId}";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-3">Manifest pasageri</h1>
+
+    @* ─── Header zbor ─────────────────────────────────────────────────── *@
+    <div class="card mb-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Companie</dt>
+                <dd class="col-sm-9">@Model.AirlineName</dd>
+
+                <dt class="col-sm-3">Ruta</dt>
+                <dd class="col-sm-9">@Model.Source &rarr; @Model.Destination</dd>
+
+                <dt class="col-sm-3">Plecare</dt>
+                <dd class="col-sm-9">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
+
+                <dt class="col-sm-3">Total pasageri</dt>
+                <dd class="col-sm-9"><strong>@Model.Passengers.Count</strong></dd>
+            </dl>
+        </div>
+    </div>
+
+    @if (!Model.Passengers.Any())
+    {
+        <div class="alert alert-info">
+            Niciun pasager rezervat (cu plata confirmata) pe acest zbor.
+        </div>
+    }
+    else
+    {
+        @* ─── Tabel pasageri ──────────────────────────────────────────── *@
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Pasager</th>
+                        <th>Loc</th>
+                        <th>Data rezervarii</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ var i = 1; }
+                    @foreach (var p in Model.Passengers)
+                    {
+                        <tr>
+                            <td>@(i++)</td>
+                            <td>@p.PassengerFullName</td>
+                            <td>@p.SeatNumber</td>
+                            <td>@p.ReservationTimeStamp.ToString("dd MMM yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

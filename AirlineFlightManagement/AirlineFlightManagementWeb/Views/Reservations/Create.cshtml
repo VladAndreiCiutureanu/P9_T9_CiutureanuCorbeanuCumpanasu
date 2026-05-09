@@ -1,0 +1,84 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.Reservation.CreateReservationViewModel
+@{
+    ViewData["Title"] = "Rezervare noua";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Rezervare zbor</h1>
+
+    @* Erori globale (BR-1, BR-4, API unavailable, etc.) *@
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+
+    <div class="row">
+        @* ─── Coloana stanga: detalii zbor ─────────────────────────────── *@
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong>Detalii zbor</strong>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-5">Companie</dt>
+                        <dd class="col-sm-7">@Model.AirlineName</dd>
+
+                        <dt class="col-sm-5">Ruta</dt>
+                        <dd class="col-sm-7">@Model.Source &rarr; @Model.Destination</dd>
+
+                        <dt class="col-sm-5">Plecare</dt>
+                        <dd class="col-sm-7">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-5">Sosire</dt>
+                        <dd class="col-sm-7">@Model.ArrivalTime.ToString("dd MMM yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        @* ─── Coloana dreapta: formularul ──────────────────────────────── *@
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Optiuni rezervare</strong>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="FlightId" />
+
+                        @* Selector clasa *@
+                        <div class="mb-3">
+                            <label asp-for="FlightClassId" class="form-label">Clasa</label>
+                            <select asp-for="FlightClassId" asp-items="Model.AvailableClasses" class="form-select">
+                                <option value="">-- Alege clasa --</option>
+                            </select>
+                            <span asp-validation-for="FlightClassId" class="text-danger"></span>
+                        </div>
+
+                        @* Selector loc (optional) *@
+                        <div class="mb-3">
+                            <label asp-for="SeatId" class="form-label">Loc (optional)</label>
+                            <select asp-for="SeatId" class="form-select">
+                                <option value="">-- Primul disponibil --</option>
+                                @foreach (var seat in Model.AvailableSeats)
+                                {
+                                    <option value="@seat.FlightSeatId">@seat.SeatNumber (@seat.ClassName)</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SeatId" class="text-danger"></span>
+                            <small class="text-muted">Daca nu alegi, primesti automat primul loc disponibil din clasa selectata.</small>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Anuleaza</a>
+                            <button type="submit" class="btn btn-primary">Rezerva</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

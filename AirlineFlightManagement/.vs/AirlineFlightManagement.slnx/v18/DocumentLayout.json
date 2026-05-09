@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reservations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -19,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-09T17:59:13.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "History.cshtml",
               "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
               "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",

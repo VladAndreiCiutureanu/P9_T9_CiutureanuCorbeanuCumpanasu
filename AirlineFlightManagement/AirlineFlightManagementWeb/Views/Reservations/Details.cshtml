@@ -1,0 +1,112 @@
+@using AirlineFlightManagement.Models.Enums
+@model AirlineFlightManagementWeb.Models.ViewModels.Reservation.ReservationDetailsViewModel
+@{
+    ViewData["Title"] = $"Rezervare #{Model.ReservationId}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mb-0">Rezervare #@Model.ReservationId</h1>
+                @switch (Model.Status)
+                {
+                    case ReservationStatus.ConfirmedAndPaid:
+                        <span class="badge bg-success fs-6">Confirmata</span>
+                        break;
+                    case ReservationStatus.Pending:
+                        <span class="badge bg-warning text-dark fs-6">In asteptare</span>
+                        break;
+                    case ReservationStatus.Cancelled:
+                        <span class="badge bg-secondary fs-6">Anulata</span>
+                        break;
+                }
+            </div>
+
+            @* TempData notificari *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            @* ─── Card detalii zbor ─────────────────────────────────────── *@
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong>Zbor</strong>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Companie</dt>
+                        <dd class="col-sm-8">@Model.AirlineName</dd>
+
+                        <dt class="col-sm-4">Ruta</dt>
+                        <dd class="col-sm-8">@Model.Source &rarr; @Model.Destination</dd>
+
+                        <dt class="col-sm-4">Plecare</dt>
+                        <dd class="col-sm-8">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-4">Sosire</dt>
+                        <dd class="col-sm-8">@Model.ArrivalTime.ToString("dd MMM yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+            </div>
+
+            @* ─── Card detalii rezervare ────────────────────────────────── *@
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong>Rezervare</strong>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Pasager</dt>
+                        <dd class="col-sm-8">@Model.PassengerFullName</dd>
+
+                        <dt class="col-sm-4">Loc</dt>
+                        <dd class="col-sm-8">@Model.SeatNumber</dd>
+
+                        <dt class="col-sm-4">Pret total</dt>
+                        <dd class="col-sm-8"><strong>@Model.TotalPrice.ToString("C")</strong></dd>
+
+                        <dt class="col-sm-4">Creata la</dt>
+                        <dd class="col-sm-8">@Model.ReservationTimeStamp.ToString("dd MMM yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+            </div>
+
+            @* ─── Butoane de actiune ───────────────────────────────────── *@
+            <div class="d-flex gap-2">
+                <a asp-action="Index" class="btn btn-outline-secondary">Inapoi</a>
+
+                @if (Model.CanPay)
+                {
+                    <a asp-controller="Payments" asp-action="Process" asp-route-reservationId="@Model.ReservationId" class="btn btn-success">
+                        Plateste @Model.TotalPrice.ToString("C")
+                    </a>
+                }
+
+                @if (Model.CanCancel)
+                {
+                    <form asp-action="Cancel" asp-route-id="@Model.ReservationId" method="post" class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Sigur vrei sa anulezi rezervarea?');">
+                            Anuleaza rezervarea
+                        </button>
+                    </form>
+                }
+            </div>
+
+            @* Mesaj informativ daca nu se mai poate anula *@
+            @if (!Model.CanCancel && Model.Status != ReservationStatus.Cancelled)
+            {
+                <div class="alert alert-warning mt-3 small">
+                    Anularea independenta nu mai e posibila — fereastra de 24h inainte de plecare a expirat.
+                </div>
+            }
+        </div>
+    </div>
+</div>
