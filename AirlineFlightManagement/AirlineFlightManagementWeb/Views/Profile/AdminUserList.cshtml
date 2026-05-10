@@ -1,0 +1,90 @@
+@model IEnumerable<AirlineFlightManagement.Models.Models.PassengerProfile>
+@{
+    ViewData["Title"] = "Gestiune Pasageri și Conturi";
+    var isAdmin = User.IsInRole("Administrator");
+}
+
+<div class="mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h2>@ViewData["Title"]</h2>
+    <p class="text-muted">Lista completă a pasagerilor înregistrați în sistem.</p>
+    <hr />
+
+    <div class="table-responsive mt-3">
+        <table class="table table-striped table-hover border box-shadow align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID Pasager</th>
+                    <th>Nume Complet</th>
+                    <th>Adresă Email</th>
+                    <th>Număr Telefon</th>
+                    <th>Stare Cont</th>
+                    @if (isAdmin)
+                    {
+                        <th class="text-center">Acțiuni Administrative</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var isActive = item.UserAccount?.IsActive ?? false;
+                    var email = item.UserAccount?.Email ?? "N/A";
+
+                    <tr>
+                        <td class="fw-bold">#@item.PassengerId</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>
+                            @if (isActive)
+                            {
+                                <span class="badge bg-success">Activ</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Dezactivat</span>
+                            }
+                        </td>
+                        @if (isAdmin)
+                        {
+                            <td class="text-center">
+                                <div class="d-inline-flex gap-2">
+                                    <a asp-action="AssignRole" asp-route-userId="@item.UserId" asp-route-email="@email" class="btn btn-sm btn-outline-primary">
+                                        🛡️ Schimbă Rol
+                                    </a>
+
+                                    @if (isActive)
+                                    {
+                                        <form asp-action="DeactivateUser" method="post" onsubmit="return confirm('Ești sigur că dorești să dezactivezi acest cont?');">
+                                            <input type="hidden" name="userId" value="@item.UserId" />
+                                            <button type="submit" class="btn btn-sm btn-danger">🚫 Dezactivează</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-sm btn-secondary" disabled>🚫 Dezactivat</button>
+                                    }
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
