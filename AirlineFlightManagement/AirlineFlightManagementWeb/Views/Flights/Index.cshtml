@@ -36,7 +36,7 @@
 
     @if(Model != null && Model.Any())
     {
-        <h4>Rezultate pentru ruta: @ViewBag.Source (@ViewBag.SafeSourceCode) ➔ @ViewBag.Destination (@ViewBag.SafeDestCode) (pe data de @ViewBag.DepartureDate)</h4>
+        <h4>Result for the route: @ViewBag.Source (@ViewBag.SafeSourceCode) ➔ @ViewBag.Destination (@ViewBag.SafeDestCode) (on @ViewBag.DepartureDate)</h4>
         <div class="row mt-4">
             @foreach(var flight in Model)
             {
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <h6 class="mt-3 text-muted">Alege clasa:</h6>
+                            <h6 class="mt-3 text-muted">Choose class:</h6>
                             <ul class="list-group list-group-flush">
                                 @foreach(var fc in flight.FlightClasses)
                                 {
@@ -74,7 +74,7 @@
                             </ul>
                         </div>
                         <div class="card-footer bg-white border-top-0">
-                            <a href="#" class="btn btn-outline-primary w-100">Vezi Detalii & Rezervă</a>
+                            <a href="#" class="btn btn-outline-primary w-100">See Details & Book</a>
                         </div>
                     </div>
                 </div>
