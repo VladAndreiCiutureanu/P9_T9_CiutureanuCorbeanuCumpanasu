@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AirlineFlightManagementWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8f22c610e25fa6659868bf127d8f8fde42e8c73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a1b756c974cb208d7e0d89b4098f84b32e5d966")]
 [assembly: System.Reflection.AssemblyProductAttribute("AirlineFlightManagementWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AirlineFlightManagementWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

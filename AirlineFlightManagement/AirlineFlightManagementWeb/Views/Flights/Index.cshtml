@@ -1,12 +1,11 @@
 @model IEnumerable<AirlineFlightManagement.Models.Models.Flight>
 @{
-    ViewData["Title"] = "Căutare Zboruri";
+    ViewData["Title"] = "Flight Search";
 }
 
 <div class="container mt-5">
     <h2 class="mb-4 text-primary"><i class="bi bi-airplane-engines"></i> Căutare Zboruri</h2>
 
-    <!-- Formularul de Search Public -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <form method="get" asp-controller="Flights" asp-action="Index" class="row gx-3 gy-2 align-items-center">
@@ -33,11 +32,11 @@
         </div>
     </div>
 
-    <!-- Lista de Zboruri Găsite (Flight List) -->
+    <!-- (Flight List) -->
 
     @if(Model != null && Model.Any())
     {
-        <h4>Rezultate pentru ruta: @ViewBag.Source ➔ @ViewBag.Destination (pe data de @ViewBag.DepartureDate)</h4>
+        <h4>Rezultate pentru ruta: @ViewBag.Source (@ViewBag.SafeSourceCode) ➔ @ViewBag.Destination (@ViewBag.SafeDestCode) (pe data de @ViewBag.DepartureDate)</h4>
         <div class="row mt-4">
             @foreach(var flight in Model)
             {
@@ -51,7 +50,7 @@
                             <div class="d-flex justify-content-between text-center mb-3">
                                 <div>
                                     <h5 class="mb-0">@flight.DepartureTime.ToString("HH:mm")</h5>
-                                    <small class="text-muted">@flight.Source</small>
+                                    <small class="text-muted">@ViewBag.SafeSourceCode</small>
                                 </div>
                                 <div class="px-2 w-100 mt-2">
                                     <hr class="border-secondary mb-1">
@@ -59,7 +58,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-0">@flight.ArrivalTime.ToString("HH:mm")</h5>
-                                    <small class="text-muted">@flight.Destination</small>
+                                    <small class="text-muted">@ViewBag.SafeDestCode</small>
                                 </div>
                             </div>
 
@@ -69,14 +68,12 @@
                                 {
                                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                         @fc.ClassName
-                                        <!-- Aici se vede prețul modificat (+25$ Markup) -->
                                         <span class="fw-bold text-primary">€@fc.Price.ToString("0.00")</span> 
                                     </li>
                                 }
                             </ul>
                         </div>
                         <div class="card-footer bg-white border-top-0">
-                            <!-- Aici vine View-ul de Details indicat de cerință -->
                             <a href="#" class="btn btn-outline-primary w-100">Vezi Detalii & Rezervă</a>
                         </div>
                     </div>
@@ -86,6 +83,6 @@
     }
     else if(!string.IsNullOrEmpty(ViewBag.Source))
     {
-        <div class="alert alert-warning mt-4">Nu am găsit zboruri disponibile pentru această rută.</div>
+        <div class="alert alert-warning mt-4">No routes were found!</div>
     }
 </div>

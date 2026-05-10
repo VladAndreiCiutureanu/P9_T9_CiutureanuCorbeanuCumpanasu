@@ -23,6 +23,17 @@ namespace AirlineFlightManagement.Services.Implementations
 
         public async Task<IEnumerable<Flight>> GetAvailableFlightsAsync(string source, string destination, DateTime departureDate)
         {
+            // First check the database
+            var dbFlights = await _unitOfWork.FlightRepository.GetAllAsync(f => f.Source == source && f.Destination == destination && f.DepartureTime.Date == departureDate.Date, includeProperties: "FlightClasses");
+
+            var flightsList = dbFlights.ToList();
+            if (flightsList.Any())
+            {
+                // Flights found in database, apply markup and return
+                return await ApplyMarkupAsync(flightsList);
+            }
+
+            // Not found in database, call the API
             var rawFlights = await _serpApiClient.SearchFlightsAsync(source, destination, departureDate);
 
             // Fetch the default aircraft, or create it if no aircrafts exist in the database yet
@@ -62,9 +73,14 @@ namespace AirlineFlightManagement.Services.Implementations
                 Console.WriteLine("Could not save to db: " + ex.Message);
             }
 
+            return await ApplyMarkupAsync(rawFlights.ToList());
+        }
+
+        private async Task<IEnumerable<Flight>> ApplyMarkupAsync(List<Flight> flights)
+        {
             var markup = await _configService.GetPlatformMarkupAsync();
 
-            var updatedFlights = rawFlights.ToList();
+            var updatedFlights = flights.ToList();
             foreach(var flight in updatedFlights)
             {
                 if (flight.FlightClasses != null)

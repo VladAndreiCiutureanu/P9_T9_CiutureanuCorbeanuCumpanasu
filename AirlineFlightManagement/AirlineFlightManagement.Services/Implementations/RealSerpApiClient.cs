@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using AirlineFlightManagement.Models.Models;
 using AirlineFlightManagement.Services.Interfaces;
+using AirlineFlightManagement.Services.Helpers;
 
 namespace AirlineFlightManagement.Services.Implementations
 {
@@ -29,14 +30,19 @@ namespace AirlineFlightManagement.Services.Implementations
 
             var flights = new List<Flight>();
 
-            // Formatăm data pentru Google Flights API (ex: 2024-12-01)
+            if (departureDate.Date < DateTime.Now.Date)
+            {
+                departureDate = DateTime.Now.Date;
+            }
+
+            // format the date
             string dateStr = departureDate.ToString("yyyy-MM-dd");
 
-            // Google Flights funcționează cu coduri de aeroport, dar SerpApi poate accepta și nume de orașe în anumite cazuri
-            // Pentru siguranță se recomandă coduri IAATA (ex: OTP, LHR).
-            // Formula completă care specifică 'type=2' (One-way) 
-            // SerpApi by default consideră type=1 (Round-trip) și din acest motiv dădea eroare dacă lipsea data de întoarcere
-            string url = $"https://serpapi.com/search.json?engine=google_flights&departure_id={source}&arrival_id={destination}&outbound_date={dateStr}&type=2&currency=USD&hl=en&api_key={_apiKey}";
+            string safeSource = LocationMapper.GetSafeCode(source);
+            string safeDestination = LocationMapper.GetSafeCode(destination);
+
+            // 'type=2' (One-way) 
+            string url = $"https://serpapi.com/search.json?engine=google_flights&departure_id={safeSource}&arrival_id={safeDestination}&outbound_date={dateStr}&type=2&currency=USD&hl=en&api_key={_apiKey}";
 
             try
             {
@@ -45,11 +51,11 @@ namespace AirlineFlightManagement.Services.Implementations
 
                 var content = await response.Content.ReadAsStringAsync();
 
-                // Parsam JSON-ul primit 
+                // parse the json
                 using var jsonDoc = JsonDocument.Parse(content);
                 var root = jsonDoc.RootElement;
 
-                // Căutăm block-ul de zboruri - poate fi "best_flights" sau "other_flights"
+  
                 if (!root.TryGetProperty("best_flights", out JsonElement flightsList))
                 {
                     root.TryGetProperty("other_flights", out flightsList);
@@ -61,12 +67,11 @@ namespace AirlineFlightManagement.Services.Implementations
                     {
                         var flight = new Flight
                         {
-                            // Salvăm ceva care să-l facă unic, de ex: booking_token
                             ExternalApiId = element.TryGetProperty("departure_token", out var token) ? token.GetString() : Guid.NewGuid().ToString(),
                             Source = source,
                             Destination = destination,
-                            DepartureTime = departureDate, // ar trebui citită direct din element, momentan setam data căutării
-                            ArrivalTime = departureDate.AddHours(2), // dummy fallback
+                            DepartureTime = departureDate, 
+                            ArrivalTime = departureDate.AddHours(2), 
                             Status = "Scheduled",
                             FlightClasses = new List<FlightClass>()
                         };
@@ -105,7 +110,7 @@ namespace AirlineFlightManagement.Services.Implementations
             }
             catch (Exception ex)
             {
-                // Returnăm excepția vizual direct pe Web ca să ne dăm seama de ce Google Flights dă crash
+                
                 var errorFlight = new Flight
                 {
                     ExternalApiId = Guid.NewGuid().ToString(),
