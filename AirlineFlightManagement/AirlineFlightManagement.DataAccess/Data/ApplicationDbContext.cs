@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirlineFlightManagement.DataAccess.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
+    // Am modificat clasa de bază în IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
         public DbSet<PassengerProfile> PassengerProfiles { get; set; }
         public DbSet<Aircraft> Aircrafts { get; set; }
@@ -21,6 +22,14 @@ namespace AirlineFlightManagement.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // CONFIGURARE ADĂUGATĂ PENTRU COLEGUL A:
+            // Maparea relației One-to-One între ApplicationUser și PassengerProfile
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(u => u.PassengerProfile)
+                .WithOne(p => p.UserAccount)
+                .HasForeignKey<PassengerProfile>(p => p.UserId);
+
+            // RESTUL CONFIGURĂRILOR EXISTENTE (PĂSTRATE EXACT CUM ERAU):
             modelBuilder.Entity<FlightSeat>()
                 .HasOne(fs => fs.Flight)
                 .WithMany(f => f.FlightSeats)
