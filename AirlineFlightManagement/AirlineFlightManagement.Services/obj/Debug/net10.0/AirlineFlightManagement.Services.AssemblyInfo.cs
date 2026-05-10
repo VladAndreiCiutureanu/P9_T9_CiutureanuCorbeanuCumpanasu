@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AirlineFlightManagement.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a1b756c974cb208d7e0d89b4098f84b32e5d966")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ca58d08f7affdc0b87ac5ecacb385687c7f1fb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AirlineFlightManagement.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AirlineFlightManagement.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
