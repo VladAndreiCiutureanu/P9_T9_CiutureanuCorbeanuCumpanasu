@@ -67,7 +67,17 @@ namespace AirlineFlightManagement.Services.Implementations
             // 3. Salvam in DB cele care nu exista deja (REQ-24 cache local)
             await PersistNewFlightsAsync(apiFlights);
 
-            return await BuildResultsWithMarkupAsync(apiFlights, fromLocalDb: false);
+            // 4. Re-citim din DB ca sa avem FlightId si FlightClassId populate.
+            //    Asta permite afisarea butonului "Rezerva" din prima cautare.
+            var persistedFlights = (await _uow.FlightRepository.GetAllAsync(
+                filter: f => f.Source == source
+                          && f.Destination == destination
+                          && f.DepartureTime.Date == date.Date,
+                tracked: false,
+                f => f.FlightClasses,
+                f => f.FlightSeats)).ToList();
+
+            return await BuildResultsWithMarkupAsync(persistedFlights, fromLocalDb: true);
         }
 
         // ─────────────────────────────────────────────────────────────────────
