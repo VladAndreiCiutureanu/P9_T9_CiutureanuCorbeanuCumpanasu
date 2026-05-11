@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Necesar pentru SignInManager<T> folosit in AuthService -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AirlineFlightManagement.DataAccess\AirlineFlightManagement.DataAccess.csproj" />
     <ProjectReference Include="..\AirlineFlightManagement.Models\AirlineFlightManagement.Models.csproj" />
   </ItemGroup>

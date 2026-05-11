@@ -31,8 +31,8 @@ namespace AirlineFlightManagement.Services.Implementations
             // datele de cont (cum ar fi Email și IsActive) sunt disponibile și nu apar ca "N/A" în UI.
             return await _uow.PassengerProfileRepository.GetAllAsync(
                 filter: null,
-                includeProperties: "UserAccount",
-                tracked: false);
+                tracked: false,
+                p => p.UserAccount!);
         }
 
         public async Task UpdateProfileAsync(

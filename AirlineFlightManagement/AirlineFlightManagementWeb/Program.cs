@@ -33,10 +33,28 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-// ÎNREGISTRARE DEPENDENȚE (DI) PENTRU COLEGUL A
+// ÎNREGISTRARE DEPENDENȚE (DI)
+
+// Coleg A — Auth + Profile
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPassengerService, PassengerService>();
+
+// Coleg B — Flights + SerpAPI
+builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped<IMarkupService, MarkupService>();
+// Mock pentru dev/test — schimba in RealSerpApiClient pentru productie
+builder.Services.AddScoped<ISerpApiClient, MockSerpApiClient>();
+// HttpClient pentru RealSerpApiClient (cand vom comuta) — vezi REQ 5.1 timeout 5s
+builder.Services.AddHttpClient<RealSerpApiClient>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(5);
+});
+
+// Coleg C — Reservations + Payments + Reports
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 builder.Services.AddControllersWithViews();
 
