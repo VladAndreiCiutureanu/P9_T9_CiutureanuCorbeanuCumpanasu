@@ -18,11 +18,17 @@ namespace AirlineFlightManagement.Services.Implementations
             // Mic delay ca sa simulam latenta retea
             await Task.Delay(500);
 
+            // ID-uri unice per ruta + data, ca sa nu coliziuneze cu zboruri
+            // deja cached in DB pentru alte rute. Fara asta, indexul unique pe
+            // ExternalApiId facea ca a doua cautare (alta ruta) sa nu salveze
+            // nimic in DB si rezultatele sa apara goale.
+            string routeKey = $"{Sanitize(source)}_{Sanitize(destination)}_{departureDate:yyyyMMdd}";
+
             return new List<Flight>
             {
                 new Flight
                 {
-                    ExternalApiId = "mock_serp_1",
+                    ExternalApiId = $"mock_tarom_{routeKey}",
                     AirlineName = "Tarom",
                     Source = source,
                     Destination = destination,
@@ -37,7 +43,7 @@ namespace AirlineFlightManagement.Services.Implementations
                 },
                 new Flight
                 {
-                    ExternalApiId = "mock_serp_2",
+                    ExternalApiId = $"mock_wizz_{routeKey}",
                     AirlineName = "Wizz Air",
                     Source = source,
                     Destination = destination,
@@ -57,6 +63,18 @@ namespace AirlineFlightManagement.Services.Implementations
         public Task<bool> VerifyAvailabilityAsync(string externalApiId)
         {
             return Task.FromResult(true);
+        }
+
+        // Inlocuieste caractere care ar putea face urat ExternalApiId-ul:
+        // spatii, diacritice, slash-uri. Pastreaza doar litere/cifre/underscore.
+        private static string Sanitize(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "X";
+            var chars = input
+                .Where(c => char.IsLetterOrDigit(c))
+                .Select(char.ToUpperInvariant)
+                .ToArray();
+            return chars.Length > 0 ? new string(chars) : "X";
         }
     }
 }
