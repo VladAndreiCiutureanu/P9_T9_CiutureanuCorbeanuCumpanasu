@@ -16,16 +16,16 @@ namespace AirlineFlightManagement.Services.Implementations
     public class ReservationService : IReservationService
     {
         private readonly IUnitOfWork _uow;
-        private readonly IAmadeusClient _amadeusClient;
+        private readonly ISerpApiClient _serpApiClient;
 
         // Numarul minim de ore inainte de plecare in care un pasager
         // mai poate anula independent rezervarea (BR-2).
         private const int CANCELLATION_WINDOW_HOURS = 24;
 
-        public ReservationService(IUnitOfWork uow, IAmadeusClient amadeusClient)
+        public ReservationService(IUnitOfWork uow, ISerpApiClient serpApiClient)
         {
             _uow = uow;
-            _amadeusClient = amadeusClient;
+            _serpApiClient = serpApiClient;
         }
 
         // ─────────────────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ namespace AirlineFlightManagement.Services.Implementations
             // Apelul la Amadeus se face inainte de tranzactie (e potential lent
             // si poate da timeout - 5.1 zice max 5 secunde). Daca API-ul cade
             // sau zice ca zborul a fost anulat, refuzam booking-ul (5.2 fail-safe).
-            bool availableInApi = await _amadeusClient
+            bool availableInApi = await _serpApiClient
                 .VerifyAvailabilityAsync(flight.ExternalApiId);
             if (!availableInApi)
                 throw new InvalidOperationException(
