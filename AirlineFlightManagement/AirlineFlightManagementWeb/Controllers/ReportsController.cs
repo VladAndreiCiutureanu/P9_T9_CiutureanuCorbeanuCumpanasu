@@ -43,8 +43,12 @@ namespace AirlineFlightManagementWeb.Controllers
         public async Task<IActionResult> Occupancy(DateTime? from = null, DateTime? to = null)
         {
             // Default: ultimele 30 de zile incheiate cu ziua curenta.
-            var fromDate = from ?? DateTime.UtcNow.Date.AddDays(-DEFAULT_RANGE_DAYS);
-            var toDate = to ?? DateTime.UtcNow.Date.AddDays(1).AddSeconds(-1);
+            // Important: indiferent daca data vine din query string sau din default,
+            //   - "from" = 00:00:00 (inceputul zilei)
+            //   - "to"   = 23:59:59 (sfarsitul zilei) — altfel pierdem zborurile
+            //              de dupa miezul noptii ale zilei to.
+            var fromDate = (from ?? DateTime.UtcNow.Date.AddDays(-DEFAULT_RANGE_DAYS)).Date;
+            var toDate = (to ?? DateTime.UtcNow.Date).Date.AddDays(1).AddSeconds(-1);
 
             // Validare interval
             if (fromDate > toDate)
@@ -98,8 +102,9 @@ namespace AirlineFlightManagementWeb.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Revenue(DateTime? from = null, DateTime? to = null)
         {
-            var fromDate = from ?? DateTime.UtcNow.Date.AddDays(-DEFAULT_RANGE_DAYS);
-            var toDate = to ?? DateTime.UtcNow.Date.AddDays(1).AddSeconds(-1);
+            // Vezi comentariul de la Occupancy — to se extinde la sfarsitul zilei.
+            var fromDate = (from ?? DateTime.UtcNow.Date.AddDays(-DEFAULT_RANGE_DAYS)).Date;
+            var toDate = (to ?? DateTime.UtcNow.Date).Date.AddDays(1).AddSeconds(-1);
 
             if (fromDate > toDate)
             {
