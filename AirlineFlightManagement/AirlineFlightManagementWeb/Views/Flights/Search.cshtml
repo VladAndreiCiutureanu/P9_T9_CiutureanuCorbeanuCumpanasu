@@ -1,0 +1,111 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.Flight.FlightSearchPageViewModel
+@{
+    ViewData["Title"] = "Caută zboruri";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">🔍 Caută zboruri</h1>
+
+    @* ─── Formular cautare ────────────────────────────────────────────── *@
+    <div class="card mb-4">
+        <div class="card-body">
+            <form asp-action="Search" method="post" class="row g-3">
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-4">
+                    <label asp-for="Source" class="form-label"></label>
+                    <input asp-for="Source" class="form-control" placeholder="ex: Bucuresti, OTP" />
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="Destination" class="form-label"></label>
+                    <input asp-for="Destination" class="form-control" placeholder="ex: Munchen, MUC" />
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="DepartureDate" class="form-label"></label>
+                    <input asp-for="DepartureDate" class="form-control" type="date" />
+                </div>
+
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Caută</button>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger mt-3" role="alert" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+            </form>
+        </div>
+    </div>
+
+    @* ─── Rezultate ───────────────────────────────────────────────────── *@
+    @if (Model.SearchPerformed)
+    {
+        if (!Model.Results.Any())
+        {
+            <div class="alert alert-info">
+                Niciun zbor găsit pentru criteriile selectate. Încercați alte date sau destinații.
+            </div>
+        }
+        else
+        {
+            <h4 class="mb-3">@Model.Results.Count() rezultate găsite</h4>
+
+            @foreach (var flight in Model.Results)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <h5 class="mb-1">@flight.AirlineName</h5>
+                                @if (flight.IsFromLocalDb)
+                                {
+                                    <span class="badge bg-warning text-dark">Promoție</span>
+                                }
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <strong>@flight.Source</strong><br />
+                                        <small class="text-muted">@flight.DepartureTime.ToString("dd MMM, HH:mm")</small>
+                                    </div>
+                                    <div class="mx-3">→</div>
+                                    <div>
+                                        <strong>@flight.Destination</strong><br />
+                                        <small class="text-muted">@flight.ArrivalTime.ToString("dd MMM, HH:mm")</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                @if (flight.Classes.Any())
+                                {
+                                    <small class="text-muted">De la</small>
+                                    <h5 class="mb-0 text-primary">@flight.Classes.Min(c => c.Price).ToString("C")</h5>
+                                    <small>@flight.Classes.Count() clase disponibile</small>
+                                }
+                            </div>
+                            <div class="col-md-2 text-end">
+                                @if (flight.LocalFlightId.HasValue)
+                                {
+                                    <a asp-controller="Reservations" asp-action="Create"
+                                       asp-route-flightId="@flight.LocalFlightId.Value"
+                                       class="btn btn-success">
+                                        Rezervă
+                                    </a>
+                                }
+                                else
+                                {
+                                    <small class="text-muted">
+                                        Doar API. Cautați din nou pentru a importa local.
+                                    </small>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
