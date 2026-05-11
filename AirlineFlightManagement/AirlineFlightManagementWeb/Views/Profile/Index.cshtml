@@ -1,0 +1,35 @@
+@model AirlineFlightManagement.Models.Models.PassengerProfile
+@{
+    ViewData["Title"] = "Profilul Meu de Pasager";
+}
+
+<div class="mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <div class="card box-shadow col-md-8 mt-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted">Nume Complet:</dt>
+                <dd class="col-sm-8 fw-bold">@Model.FirstName @Model.LastName</dd>
+
+                <dt class="col-sm-4 text-muted mt-2">Număr de Telefon:</dt>
+                <dd class="col-sm-8 mt-2">@Model.PhoneNumber</dd>
+
+                <dt class="col-sm-4 text-muted mt-2">Adresă de Contact:</dt>
+                <dd class="col-sm-8 mt-2">@Model.Address</dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-light">
+            <a asp-action="Edit" class="btn btn-outline-primary fw-bold">✏️ Editează Datele de Contact</a>
+        </div>
+    </div>
+</div>
