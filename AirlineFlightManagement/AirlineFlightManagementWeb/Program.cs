@@ -83,7 +83,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-app.MapRazorPages()
-   .WithStaticAssets();
+// Razor Pages NU e folosit — Identity UI custom prin AccountController (MVC).
+// Daca cineva are nevoie de Razor Pages in viitor, adaugati builder.Services.AddRazorPages()
+// si decomentati app.MapRazorPages() de mai jos.
 
 app.Run();
