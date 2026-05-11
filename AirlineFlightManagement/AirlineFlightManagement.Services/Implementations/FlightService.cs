@@ -22,6 +22,11 @@ namespace AirlineFlightManagement.Services.Implementations
         // pentru zborurile noi venite din API.
         private const int DEFAULT_AIRCRAFT_CAPACITY = 200;
 
+        // Cate locuri generam per clasa cand cream un zbor nou din API.
+        // 30 e suficient pentru testare; in productie ar trebui calculat
+        // din Aircraft.MaxCapacity si distributie proportionala per clasa.
+        private const int SEATS_PER_CLASS = 30;
+
         public FlightService(
             ISerpApiClient serpApi,
             IMarkupService markup,
@@ -52,6 +57,30 @@ namespace AirlineFlightManagement.Services.Implementations
 
             if (localFlights.Any())
             {
+                // Migrare retroactiva: pentru zborurile cached fara locuri
+                // (cauzate de cod vechi care nu genera FlightSeats), le populam acum.
+                var needSeatInit = localFlights
+                    .Where(f => f.FlightClasses.Any() && !f.FlightSeats.Any())
+                    .Select(f => f.FlightId)
+                    .ToList();
+
+                if (needSeatInit.Any())
+                {
+                    foreach (var flightId in needSeatInit)
+                    {
+                        await EnsureFlightHasSeatsAsync(flightId);
+                    }
+
+                    // Re-citim ca sa avem locurile nou-create in DTO
+                    localFlights = (await _uow.FlightRepository.GetAllAsync(
+                        filter: f => f.Source == source
+                                  && f.Destination == destination
+                                  && f.DepartureTime.Date == date.Date,
+                        tracked: false,
+                        f => f.FlightClasses,
+                        f => f.FlightSeats)).ToList();
+                }
+
                 return await BuildResultsWithMarkupAsync(localFlights, fromLocalDb: true);
             }
 
@@ -178,6 +207,9 @@ namespace AirlineFlightManagement.Services.Implementations
                 if (existing == null)
                 {
                     flight.AircraftId = defaultAircraft.AircraftId;
+                    // Genereaza locuri in-memory inainte de save — vor fi salvate
+                    // in cascada impreuna cu Flight si FlightClasses.
+                    GenerateSeatsInMemory(flight);
                     await _uow.FlightRepository.AddAsync(flight);
                 }
             }
@@ -192,6 +224,67 @@ namespace AirlineFlightManagement.Services.Implementations
                 // intr-un race condition), nu vrem sa stricam afisarea rezultatelor.
                 Console.WriteLine($"[FlightService] Eroare la salvare zboruri API: {ex.Message}");
             }
+        }
+
+        // Genereaza FlightSeats pentru fiecare FlightClass a unui zbor NOU
+        // (entitate ne-persistata inca). EF le va cascada-salva impreuna
+        // cu Flight + FlightClasses la AddAsync + SaveAsync.
+        private static void GenerateSeatsInMemory(Flight flight)
+        {
+            foreach (var flightClass in flight.FlightClasses)
+            {
+                char prefix = flightClass.ClassName.Length > 0
+                    ? char.ToUpper(flightClass.ClassName[0])
+                    : 'X';
+
+                for (int i = 1; i <= SEATS_PER_CLASS; i++)
+                {
+                    flight.FlightSeats.Add(new FlightSeat
+                    {
+                        // Navigation property — EF va seta FlightClassId dupa save
+                        FlightClass = flightClass,
+                        SeatNumber = $"{prefix}{i:D2}",
+                        IsAvailable = true
+                    });
+                }
+            }
+        }
+
+        // Migrare retroactiva: pentru zborurile deja cached in DB fara locuri,
+        // genereaza locurile la prima cautare.
+        private async Task EnsureFlightHasSeatsAsync(int flightId)
+        {
+            // Verificare rapida — sarim daca exista deja locuri.
+            int existing = await _uow.FlightSeatRepository.CountAvailableAsync(flightId)
+                         + await _uow.FlightSeatRepository.CountSoldAsync(flightId);
+            if (existing > 0) return;
+
+            // Incarcam zborul TRACKED cu FlightClasses pentru a putea modifica.
+            var flight = await _uow.FlightRepository.GetAsync(
+                f => f.FlightId == flightId,
+                tracked: true,
+                f => f.FlightClasses);
+
+            if (flight == null || !flight.FlightClasses.Any()) return;
+
+            foreach (var flightClass in flight.FlightClasses)
+            {
+                char prefix = flightClass.ClassName.Length > 0
+                    ? char.ToUpper(flightClass.ClassName[0])
+                    : 'X';
+
+                for (int i = 1; i <= SEATS_PER_CLASS; i++)
+                {
+                    flight.FlightSeats.Add(new FlightSeat
+                    {
+                        FlightClassId = flightClass.FlightClassId,
+                        SeatNumber = $"{prefix}{i:D2}",
+                        IsAvailable = true
+                    });
+                }
+            }
+
+            await _uow.SaveAsync();
         }
 
         // Construieste DTO-urile FlightSearchResult, aplicand markup-ul pe DTO
