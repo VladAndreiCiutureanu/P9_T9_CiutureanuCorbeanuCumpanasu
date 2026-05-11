@@ -1,0 +1,88 @@
+@using AirlineFlightManagement.Models.Enums
+@model AirlineFlightManagementWeb.Models.ViewModels.Payment.PaymentHistoryViewModel
+@{
+    ViewData["Title"] = "Istoric plati";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Istoricul platilor mele</h1>
+
+    @* ─── Notificari TempData (de la redirect-uri) ─────────────────────── *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    @if (!Model.Payments.Any())
+    {
+        @* ─── Empty state ───────────────────────────────────────────────── *@
+        <div class="card">
+            <div class="card-body text-center text-muted py-5">
+                <p class="mb-2">Nu ai inca nicio plata inregistrata.</p>
+                <a asp-controller="Reservations" asp-action="Index" class="btn btn-outline-primary">
+                    Vezi rezervarile mele
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        @* ─── Tabel cu plati ────────────────────────────────────────────── *@
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Zbor</th>
+                        <th>Suma</th>
+                        <th>Metoda</th>
+                        <th>Status</th>
+                        <th>Tranzactie</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.Payments)
+                    {
+                        <tr>
+                            <td>@p.TransactionDate.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>@p.FlightInfo</td>
+                            <td><strong>@p.Amount.ToString("C")</strong></td>
+                            <td>@p.PaymentMethod</td>
+                            <td>
+                                @switch (p.Status)
+                                {
+                                    case PaymentStatus.Completed:
+                                        <span class="badge bg-success">@p.Status</span>
+                                        break;
+                                    case PaymentStatus.Pending:
+                                        <span class="badge bg-warning text-dark">@p.Status</span>
+                                        break;
+                                    case PaymentStatus.Failed:
+                                        <span class="badge bg-danger">@p.Status</span>
+                                        break;
+                                    case PaymentStatus.Refunded:
+                                        <span class="badge bg-info text-dark">@p.Status</span>
+                                        break;
+                                    default:
+                                        <span class="badge bg-secondary">@p.Status</span>
+                                        break;
+                                }
+                            </td>
+                            <td><small><code>@p.TransactionId</code></small></td>
+                            <td>
+                                <a asp-action="Confirmation" asp-route-paymentId="@p.PaymentId" class="btn btn-sm btn-outline-primary">
+                                    Detalii
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

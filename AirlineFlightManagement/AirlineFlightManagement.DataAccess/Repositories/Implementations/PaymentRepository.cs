@@ -21,8 +21,14 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
 
         public async Task<IEnumerable<Payment>> GetByPassengerIdAsync(int passengerId)
         {
+            // Includem Reservation -> Flight pentru ca pagina de istoric plati
+            // afiseaza informatii despre zbor (sursa/destinatie/data) langa
+            // fiecare tranzactie. Fara Include am avea N+1 queries.
             return await _dbSet.AsNoTracking()
+                .Include(p => p.Reservation)
+                    .ThenInclude(r => r!.Flight)
                 .Where(p => p.Reservation!.PassengerId == passengerId)
+                .OrderByDescending(p => p.TransactionDate)
                 .ToListAsync();
         }
 

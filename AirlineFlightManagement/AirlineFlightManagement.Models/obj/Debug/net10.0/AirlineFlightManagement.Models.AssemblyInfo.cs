@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AirlineFlightManagement.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edad41ee7d2f4479a29f0ea98c3700784a59ce95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3804099b5450006a7ff8866fafa19f0f01c06628")]
 [assembly: System.Reflection.AssemblyProductAttribute("AirlineFlightManagement.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AirlineFlightManagement.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

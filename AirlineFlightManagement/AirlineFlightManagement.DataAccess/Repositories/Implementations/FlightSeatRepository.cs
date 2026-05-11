@@ -31,11 +31,19 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
                 .CountAsync(seat => seat.FlightId == flightId && !seat.IsAvailable);
         }
 
-        public async Task<IEnumerable<FlightSeat>> GetAvailableAsync(int flightId, int? flightClassId = null)
+        public async Task<IEnumerable<FlightSeat>> GetAvailableAsync(
+            int flightId,
+            int? flightClassId = null,
+            bool tracked = false)
         {
-            IQueryable<FlightSeat> query = _dbSet
-                .AsNoTracking()
-                .Where(seat => seat.FlightId == flightId && seat.IsAvailable);
+            // Pornim de la _dbSet cu sau fara tracking, dupa cum cere apelantul.
+            // Pentru read-only (afisare) folosim AsNoTracking (default).
+            // Pentru modificare ulterioara (booking) cere tracked = true.
+            IQueryable<FlightSeat> query = tracked
+                ? _dbSet
+                : _dbSet.AsNoTracking();
+
+            query = query.Where(seat => seat.FlightId == flightId && seat.IsAvailable);
 
             if (flightClassId.HasValue)
             {

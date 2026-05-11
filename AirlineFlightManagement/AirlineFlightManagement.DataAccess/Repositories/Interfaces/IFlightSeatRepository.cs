@@ -7,7 +7,12 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Interfaces
 {
     public interface IFlightSeatRepository : IRepository<FlightSeat>
     {
-        Task<IEnumerable<FlightSeat>> GetAvailableAsync(int flightId, int? flightClassId = null);
+        // tracked = true cand apelantul vrea sa modifice locul gasit
+        // (ex: ReservationService il marcheaza IsAvailable = false).
+        Task<IEnumerable<FlightSeat>> GetAvailableAsync(
+            int flightId,
+            int? flightClassId = null,
+            bool tracked = false);
         Task<int> CountAvailableAsync(int flightId);
         Task<int> CountSoldAsync(int flightId);
     }

@@ -1,5 +1,6 @@
 using AirlineFlightManagement.DataAccess.Data;
 using AirlineFlightManagement.DataAccess.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
 {
@@ -34,6 +35,14 @@ namespace AirlineFlightManagement.DataAccess.Repositories.Implementations
         public async Task SaveAsync()
         {
             await _db.SaveChangesAsync();
+        }
+
+        // Pasam tranzactia EF Core direct la apelant.
+        // Acesta e responsabil pentru CommitAsync / RollbackAsync si pentru Dispose
+        // (de regula via "using var tx = ...").
+        public Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return _db.Database.BeginTransactionAsync();
         }
     }
 }
