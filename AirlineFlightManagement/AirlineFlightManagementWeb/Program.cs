@@ -60,6 +60,40 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// ─── Seeding roluri si primul administrator ─────────────────────────────
+// Ruleaza la fiecare startup, dar e idempotent (verifica existenta inainte).
+// REQ-4: cele 3 roluri din SRS (Administrator, Staff, Customer).
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+    // 1. Cream rolurile lipsa
+    foreach (var role in new[] { "Administrator", "Staff", "Customer" })
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+
+    // 2. Conventie first-run: daca nu exista niciun admin in sistem,
+    //    primul user existent devine automat administrator.
+    //    Util pentru dezvoltare si demo (rezolvi catch-22-ul "cine creeaza
+    //    primul admin"). Ruleaza o singura data — dupa ce exista un admin,
+    //    blocul devine no-op.
+    var existingAdmins = await userManager.GetUsersInRoleAsync("Administrator");
+    if (!existingAdmins.Any())
+    {
+        var firstUser = userManager.Users.FirstOrDefault();
+        if (firstUser != null)
+        {
+            await userManager.AddToRoleAsync(firstUser, "Administrator");
+        }
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
