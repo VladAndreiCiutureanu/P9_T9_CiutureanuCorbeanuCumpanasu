@@ -1,6 +1,6 @@
 @model AirlineFlightManagement.Models.Models.PassengerProfile
 @{
-    ViewData["Title"] = "Profilul Meu de Pasager";
+    ViewData["Title"] = "My Passenger Profile";
 }
 
 <div class="mt-4">
@@ -18,18 +18,18 @@
     <div class="card box-shadow col-md-8 mt-3">
         <div class="card-body">
             <dl class="row mb-0">
-                <dt class="col-sm-4 text-muted">Nume Complet:</dt>
+                <dt class="col-sm-4 text-muted">Full Name:</dt>
                 <dd class="col-sm-8 fw-bold">@Model.FirstName @Model.LastName</dd>
 
-                <dt class="col-sm-4 text-muted mt-2">Număr de Telefon:</dt>
+                <dt class="col-sm-4 text-muted mt-2">Phone Number:</dt>
                 <dd class="col-sm-8 mt-2">@Model.PhoneNumber</dd>
 
-                <dt class="col-sm-4 text-muted mt-2">Adresă de Contact:</dt>
+                <dt class="col-sm-4 text-muted mt-2">Contact Address:</dt>
                 <dd class="col-sm-8 mt-2">@Model.Address</dd>
             </dl>
         </div>
         <div class="card-footer bg-light">
-            <a asp-action="Edit" class="btn btn-outline-primary fw-bold">✏️ Editează Datele de Contact</a>
+            <a asp-action="Edit" class="btn btn-outline-primary fw-bold">Edit Contact Information</a>
         </div>
     </div>
 </div>

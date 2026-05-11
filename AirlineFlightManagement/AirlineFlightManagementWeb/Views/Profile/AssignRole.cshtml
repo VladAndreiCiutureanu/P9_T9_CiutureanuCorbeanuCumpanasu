@@ -1,6 +1,6 @@
 @model AirlineFlightManagement.Models.ViewModels.UserRoleAssignViewModel
 @{
-    ViewData["Title"] = "Atribuire Roluri Sistem";
+    ViewData["Title"] = "System Role Assignment";
 }
 
 <div class="row mt-4">
@@ -12,28 +12,28 @@
             <div class="card-body">
                 <form asp-action="AssignRole" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                    
+
                     <input type="hidden" asp-for="UserId" />
                     <input type="hidden" asp-for="Email" />
 
                     <div class="form-group mb-3">
-                        <label class="control-label fw-bold text-muted">Cont Utilizator:</label>
+                        <label class="control-label fw-bold text-muted">User Account:</label>
                         <input class="form-control bg-light" value="@Model.Email" readonly />
                     </div>
 
                     <div class="form-group mb-4">
                         <label asp-for="SelectedRole" class="control-label fw-bold"></label>
                         <select asp-for="SelectedRole" class="form-select">
-                            <option value="">-- Selectează noul rol --</option>
+                            <option value="">-- Select new role --</option>
                             <option value="Administrator">Administrator</option>
                             <option value="Staff">Staff</option>
-                            <option value="Customer">Customer (Pasager)</option>
+                            <option value="Customer">Customer (Passenger)</option>
                         </select>
                         <span asp-validation-for="SelectedRole" class="text-danger"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary me-2">Aplică Rolul</button>
-                    <a asp-action="AdminUserList" class="btn btn-secondary">Înapoi la Listă</a>
+                    <button type="submit" class="btn btn-primary me-2">Apply Role</button>
+                    <a asp-action="AdminUserList" class="btn btn-secondary">Back to List</a>
                 </form>
             </div>
         </div>

@@ -1,6 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <div class="card box-shadow">
+        <div class="card-body">
+            <h4 class="card-title" style="color: #ff8c00;">1. Information Collection</h4>
+            <p class="card-text text-muted mb-4">
+                We collect personal information such as your name, email address, phone number, and physical address when you create an account, update your profile, or make a flight reservation. We also collect payment information securely during the checkout process.
+            </p>
+
+            <h4 class="card-title" style="color: #ff8c00;">2. Use of Information</h4>
+            <p class="card-text text-muted mb-4">
+                Your information is used strictly to provide and improve our airline management services. This includes processing flight bookings, generating passenger manifests for staff and administrators, generating financial reports, and sending you reservation confirmations.
+            </p>
+
+            <h4 class="card-title" style="color: #ff8c00;">3. Data Protection and Roles</h4>
+            <p class="card-text text-muted mb-4">
+                We implement role-based access control. Only authorized **Staff** and **Administrators** can view passenger profiles or financial reports. Your personal and financial data is kept confidential and is not shared with third-party marketing companies. 
+            </p>
+
+            <h4 class="card-title" style="color: #ff8c00;">4. Your Rights</h4>
+            <p class="card-text text-muted mb-4">
+                As a registered user, you have the right to access and update your personal information directly from the <a asp-controller="Profile" asp-action="Index" style="color: #ff8c00;">My Profile</a> page. If you wish to deactivate your account, please contact an Administrator.
+            </p>
+
+            <p class="text-secondary small mt-5 border-top pt-3">
+                <em>Last updated: @DateTime.Now.ToString("dd MMMM yyyy")</em><br />
+                For any privacy concerns or inquiries, please contact our support team.
+            </p>
+        </div>
+    </div>
+</div>

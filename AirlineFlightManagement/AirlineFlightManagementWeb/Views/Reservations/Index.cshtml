@@ -1,11 +1,11 @@
 @using AirlineFlightManagement.Models.Enums
 @model AirlineFlightManagementWeb.Models.ViewModels.Reservation.MyReservationsViewModel
 @{
-    ViewData["Title"] = "Rezervarile mele";
+    ViewData["Title"] = "My Reservations";
 }
 
 <div class="container mt-4">
-    <h1 class="mb-4">Rezervarile mele</h1>
+    <h1 class="mb-4">My Reservations</h1>
 
     @* ─── Notificari TempData ─────────────────────────────────────────── *@
     @if (TempData["Success"] != null)
@@ -26,9 +26,9 @@
         @* ─── Empty state ─────────────────────────────────────────────── *@
         <div class="card">
             <div class="card-body text-center text-muted py-5">
-                <p class="mb-2">Nu ai inca nicio rezervare.</p>
+                <p class="mb-2">You don't have any reservations yet.</p>
                 <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">
-                    Cauta zboruri
+                    Search Flights
                 </a>
             </div>
         </div>
@@ -40,11 +40,11 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Companie</th>
-                        <th>Ruta</th>
-                        <th>Plecare</th>
-                        <th>Loc</th>
-                        <th>Pret</th>
+                        <th>Airline</th>
+                        <th>Route</th>
+                        <th>Departure</th>
+                        <th>Seat</th>
+                        <th>Price</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -62,24 +62,24 @@
                                 @switch (r.Status)
                                 {
                                     case ReservationStatus.ConfirmedAndPaid:
-                                        <span class="badge bg-success">Confirmata</span>
+                                        <span class="badge bg-success">Confirmed</span>
                                         break;
                                     case ReservationStatus.Pending:
-                                        <span class="badge bg-warning text-dark">In asteptare</span>
+                                        <span class="badge bg-warning text-dark">Pending</span>
                                         break;
                                     case ReservationStatus.Cancelled:
-                                        <span class="badge bg-secondary">Anulata</span>
+                                        <span class="badge bg-secondary">Cancelled</span>
                                         break;
                                 }
                             </td>
                             <td class="text-end">
                                 <a asp-action="Details" asp-route-id="@r.ReservationId" class="btn btn-sm btn-outline-primary">
-                                    Detalii
+                                    Details
                                 </a>
                                 @if (r.CanPay)
                                 {
                                     <a asp-controller="Payments" asp-action="Process" asp-route-reservationId="@r.ReservationId" class="btn btn-sm btn-success">
-                                        Plateste
+                                        Pay
                                     </a>
                                 }
                             </td>

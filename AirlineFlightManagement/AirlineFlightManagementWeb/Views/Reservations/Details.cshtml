@@ -1,24 +1,24 @@
 @using AirlineFlightManagement.Models.Enums
 @model AirlineFlightManagementWeb.Models.ViewModels.Reservation.ReservationDetailsViewModel
 @{
-    ViewData["Title"] = $"Rezervare #{Model.ReservationId}";
+    ViewData["Title"] = $"Reservation #{Model.ReservationId}";
 }
 
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="mb-0">Rezervare #@Model.ReservationId</h1>
+                <h1 class="mb-0">Reservation #@Model.ReservationId</h1>
                 @switch (Model.Status)
                 {
                     case ReservationStatus.ConfirmedAndPaid:
-                        <span class="badge bg-success fs-6">Confirmata</span>
+                        <span class="badge bg-success fs-6">Confirmed</span>
                         break;
                     case ReservationStatus.Pending:
-                        <span class="badge bg-warning text-dark fs-6">In asteptare</span>
+                        <span class="badge bg-warning text-dark fs-6">Pending</span>
                         break;
                     case ReservationStatus.Cancelled:
-                        <span class="badge bg-secondary fs-6">Anulata</span>
+                        <span class="badge bg-secondary fs-6">Cancelled</span>
                         break;
                 }
             </div>
@@ -36,20 +36,20 @@
             @* ─── Card detalii zbor ─────────────────────────────────────── *@
             <div class="card mb-3">
                 <div class="card-header">
-                    <strong>Zbor</strong>
+                    <strong>Flight</strong>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4">Companie</dt>
+                        <dt class="col-sm-4">Airline</dt>
                         <dd class="col-sm-8">@Model.AirlineName</dd>
 
-                        <dt class="col-sm-4">Ruta</dt>
+                        <dt class="col-sm-4">Route</dt>
                         <dd class="col-sm-8">@Model.Source &rarr; @Model.Destination</dd>
 
-                        <dt class="col-sm-4">Plecare</dt>
+                        <dt class="col-sm-4">Departure</dt>
                         <dd class="col-sm-8">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
 
-                        <dt class="col-sm-4">Sosire</dt>
+                        <dt class="col-sm-4">Arrival</dt>
                         <dd class="col-sm-8">@Model.ArrivalTime.ToString("dd MMM yyyy HH:mm")</dd>
                     </dl>
                 </div>
@@ -58,20 +58,20 @@
             @* ─── Card detalii rezervare ────────────────────────────────── *@
             <div class="card mb-3">
                 <div class="card-header">
-                    <strong>Rezervare</strong>
+                    <strong>Reservation</strong>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4">Pasager</dt>
+                        <dt class="col-sm-4">Passenger</dt>
                         <dd class="col-sm-8">@Model.PassengerFullName</dd>
 
-                        <dt class="col-sm-4">Loc</dt>
+                        <dt class="col-sm-4">Seat</dt>
                         <dd class="col-sm-8">@Model.SeatNumber</dd>
 
-                        <dt class="col-sm-4">Pret total</dt>
+                        <dt class="col-sm-4">Total Price</dt>
                         <dd class="col-sm-8"><strong>@Model.TotalPrice.ToString("C")</strong></dd>
 
-                        <dt class="col-sm-4">Creata la</dt>
+                        <dt class="col-sm-4">Created On</dt>
                         <dd class="col-sm-8">@Model.ReservationTimeStamp.ToString("dd MMM yyyy HH:mm")</dd>
                     </dl>
                 </div>
@@ -79,12 +79,12 @@
 
             @* ─── Butoane de actiune ───────────────────────────────────── *@
             <div class="d-flex gap-2">
-                <a asp-action="Index" class="btn btn-outline-secondary">Inapoi</a>
+                <a asp-action="Index" class="btn btn-outline-secondary">Back</a>
 
                 @if (Model.CanPay)
                 {
                     <a asp-controller="Payments" asp-action="Process" asp-route-reservationId="@Model.ReservationId" class="btn btn-success">
-                        Plateste @Model.TotalPrice.ToString("C")
+                        Pay @Model.TotalPrice.ToString("C")
                     </a>
                 }
 
@@ -93,8 +93,8 @@
                     <form asp-action="Cancel" asp-route-id="@Model.ReservationId" method="post" class="d-inline">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Sigur vrei sa anulezi rezervarea?');">
-                            Anuleaza rezervarea
+                                onclick="return confirm('Are you sure you want to cancel the reservation?');">
+                            Cancel Reservation
                         </button>
                     </form>
                 }
@@ -104,7 +104,7 @@
             @if (!Model.CanCancel && Model.Status != ReservationStatus.Cancelled)
             {
                 <div class="alert alert-warning mt-3 small">
-                    Anularea independenta nu mai e posibila — fereastra de 24h inainte de plecare a expirat.
+                    Independent cancellation is no longer possible — the 24-hour window prior to departure has expired.
                 </div>
             }
         </div>

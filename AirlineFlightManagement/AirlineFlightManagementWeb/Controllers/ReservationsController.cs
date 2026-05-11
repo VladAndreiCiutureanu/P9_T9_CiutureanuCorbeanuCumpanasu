@@ -77,7 +77,7 @@ namespace AirlineFlightManagementWeb.Controllers
         //  Afisare formular booking pentru un zbor
         // ─────────────────────────────────────────────────────────────────────
         [HttpGet]
-        public async Task<IActionResult> Create(int flightId)
+        public async Task<IActionResult> Create(int flightId, decimal minPrice = 0)
         {
             if (flightId <= 0)
                 return BadRequest("FlightId invalid.");
@@ -102,6 +102,7 @@ namespace AirlineFlightManagementWeb.Controllers
                 Destination = flight.Destination,
                 DepartureTime = flight.DepartureTime,
                 ArrivalTime = flight.ArrivalTime,
+                MinPrice = minPrice,
 
                 AvailableClasses = flight.FlightClasses
                     .Select(fc => new SelectListItem

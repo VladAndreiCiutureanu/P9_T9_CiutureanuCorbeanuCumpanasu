@@ -1,22 +1,22 @@
 @model AirlineFlightManagement.Models.ViewModels.RegisterViewModel
 @{
-    ViewData["Title"] = "Înregistrare Cont Nou";
+    ViewData["Title"] = "Register New Account";
 }
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-6">
         <div class="card box-shadow">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header text-white" style="background-color: #ff8c00;">
                 <h4 class="mb-0">@ViewData["Title"]</h4>
             </div>
             <div class="card-body">
                 <form asp-action="Register" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                    <h6 class="text-muted mb-3">Date de Autentificare</h6>
+                    <h6 class="text-muted mb-3">Authentication Data</h6>
                     <div class="form-group mb-3">
                         <label asp-for="Email" class="control-label fw-bold"></label>
-                        <input asp-for="Email" class="form-control" placeholder="nume@domeniu.com" />
+                        <input asp-for="Email" class="form-control" placeholder="name@domain.com" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
@@ -38,7 +38,7 @@
                     </div>
 
                     <hr class="my-4" />
-                    <h6 class="text-muted mb-3">Date Profil Pasager (Obligatorii)</h6>
+                    <h6 class="text-muted mb-3">Passenger Profile Data (Required)</h6>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -70,13 +70,13 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Creează Cont</button>
+                        <button type="submit" class="btn text-white btn-lg" style="background-color: #ff8c00;">Create Account</button>
                     </div>
                 </form>
             </div>
             <div class="card-footer text-center">
-                <span class="text-muted">Ai deja un cont?</span> 
-                <a asp-action="Login" class="text-primary fw-bold">Autentifică-te aici</a>
+                <span class="text-muted">Already have an account?</span> 
+                <a asp-action="Login" class="fw-bold" style="color: #ff8c00;">Sign in here</a>
             </div>
         </div>
     </div>

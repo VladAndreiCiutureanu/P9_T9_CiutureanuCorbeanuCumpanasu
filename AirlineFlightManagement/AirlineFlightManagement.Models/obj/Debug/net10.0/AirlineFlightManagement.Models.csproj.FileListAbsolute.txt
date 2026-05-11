@@ -11,3 +11,16 @@ D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFl
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\refint\AirlineFlightManagement.Models.dll
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.pdb
 D:\Facultate\P9_T9_CiutureanuCorbeanuCumpanasu\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\ref\AirlineFlightManagement.Models.dll
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\bin\Debug\net10.0\AirlineFlightManagement.Models.deps.json
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\bin\Debug\net10.0\AirlineFlightManagement.Models.dll
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\bin\Debug\net10.0\AirlineFlightManagement.Models.pdb
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.csproj.AssemblyReference.cache
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.AssemblyInfoInputs.cache
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.AssemblyInfo.cs
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.csproj.CoreCompileInputs.cache
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.sourcelink.json
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.dll
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\refint\AirlineFlightManagement.Models.dll
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\AirlineFlightManagement.Models.pdb
+C:\Users\cumpa\Desktop\Repos\AirlineFlightManagement\AirlineFlightManagement.Models\obj\Debug\net10.0\ref\AirlineFlightManagement.Models.dll

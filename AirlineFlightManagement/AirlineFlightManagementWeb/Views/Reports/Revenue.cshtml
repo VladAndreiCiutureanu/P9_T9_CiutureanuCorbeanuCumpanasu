@@ -1,29 +1,29 @@
 @model AirlineFlightManagementWeb.Models.ViewModels.Report.RevenueReportViewModel
 @{
-    ViewData["Title"] = "Raport venituri";
+    ViewData["Title"] = "Revenue Report";
 }
 
 <div class="container mt-4">
-    <h1 class="mb-3">Raport venituri</h1>
-    <p class="text-muted small mb-4">REQ-44 — vizibil doar pentru Administratori. Agregare zilnica.</p>
+    <h1 class="mb-3">Revenue Report</h1>
+    <p class="text-muted small mb-4">REQ-44 — visible only strictly to Administrators. Daily aggregations.</p>
 
     @* ─── Filtru de date ──────────────────────────────────────────────── *@
     <form method="get" asp-action="Revenue" class="row g-3 mb-4">
         <div class="col-auto">
-            <label class="form-label">De la</label>
+            <label class="form-label">From</label>
             <input type="date" name="from"
                    value="@(Model.From?.ToString("yyyy-MM-dd"))"
                    class="form-control" />
         </div>
         <div class="col-auto">
-            <label class="form-label">Pana la</label>
+            <label class="form-label">To</label>
             <input type="date" name="to"
                    value="@(Model.To?.ToString("yyyy-MM-dd"))"
                    class="form-control" />
         </div>
         <div class="col-auto align-self-end">
-            <button type="submit" class="btn btn-primary">Aplica</button>
-            <a asp-action="Index" class="btn btn-outline-secondary">Inapoi</a>
+            <button type="submit" class="btn btn-primary">Apply</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back</a>
         </div>
     </form>
 
@@ -36,7 +36,7 @@
             <div class="col-md-4">
                 <div class="card text-center border-success">
                     <div class="card-body">
-                        <h6 class="text-muted mb-1">Total incasari</h6>
+                        <h6 class="text-muted mb-1">Total Collections</h6>
                         <h3 class="mb-0 text-success">@Model.GrandTotal.ToString("C")</h3>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="text-muted mb-1">Tranzactii</h6>
+                        <h6 class="text-muted mb-1">Transactions</h6>
                         <h3 class="mb-0">@Model.TotalTransactions</h3>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="text-muted mb-1">Medie zilnica</h6>
+                        <h6 class="text-muted mb-1">Daily Average</h6>
                         <h3 class="mb-0">@Model.AverageDailyRevenue.ToString("C")</h3>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
     @* ─── Tabel rezultate ─────────────────────────────────────────────── *@
     @if (!Model.Rows.Any())
     {
-        <div class="alert alert-info">Nicio tranzactie completata in intervalul selectat.</div>
+        <div class="alert alert-info">No transactions completed within the selected dates.</div>
     }
     else
     {
@@ -71,10 +71,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Data</th>
-                        <th class="text-end">Tranzactii</th>
-                        <th class="text-end">Incasari</th>
-                        <th class="text-end">Medie / tranzactie</th>
+                        <th>Date</th>
+                        <th class="text-end">Transactions</th>
+                        <th class="text-end">Collections</th>
+                        <th class="text-end">Avg. / Transaction</th>
                     </tr>
                 </thead>
                 <tbody>

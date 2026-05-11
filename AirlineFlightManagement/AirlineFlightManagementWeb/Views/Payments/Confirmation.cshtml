@@ -1,6 +1,6 @@
 @model AirlineFlightManagementWeb.Models.ViewModels.Payment.PaymentConfirmationViewModel
 @{
-    ViewData["Title"] = "Plata confirmata";
+    ViewData["Title"] = "Payment Confirmed";
 }
 
 <div class="container mt-4">
@@ -9,27 +9,27 @@
 
             @* ─── Banner de succes (REQ-50) ─────────────────────────────── *@
             <div class="alert alert-success text-center" role="alert">
-                <h2 class="alert-heading mb-2">Plata efectuata cu succes!</h2>
-                <p class="mb-0">Rezervarea ta este confirmata. Iti vom trimite un email cu detaliile.</p>
+                <h2 class="alert-heading mb-2">Payment successful!</h2>
+                <p class="mb-0">Your reservation is confirmed. We will email you the details.</p>
             </div>
 
             @* ─── Card cu detalii tranzactie ─────────────────────────────── *@
             <div class="card mb-3">
                 <div class="card-header">
-                    <strong>Detalii tranzactie</strong>
+                    <strong>Transaction Details</strong>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4">ID Tranzactie</dt>
+                        <dt class="col-sm-4">Transaction ID</dt>
                         <dd class="col-sm-8"><code>@Model.TransactionId</code></dd>
 
-                        <dt class="col-sm-4">Data</dt>
+                        <dt class="col-sm-4">Date</dt>
                         <dd class="col-sm-8">@Model.TransactionDate.ToString("dd MMM yyyy HH:mm")</dd>
 
-                        <dt class="col-sm-4">Metoda</dt>
+                        <dt class="col-sm-4">Method</dt>
                         <dd class="col-sm-8">@Model.PaymentMethod</dd>
 
-                        <dt class="col-sm-4">Suma</dt>
+                        <dt class="col-sm-4">Amount</dt>
                         <dd class="col-sm-8"><strong>@Model.Amount.ToString("C")</strong></dd>
                     </dl>
                 </div>
@@ -38,20 +38,20 @@
             @* ─── Card cu detalii zbor ──────────────────────────────────── *@
             <div class="card mb-3">
                 <div class="card-header">
-                    <strong>Zbor rezervat</strong>
+                    <strong>Booked Flight</strong>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-4">Companie</dt>
+                        <dt class="col-sm-4">Airline</dt>
                         <dd class="col-sm-8">@Model.AirlineName</dd>
 
-                        <dt class="col-sm-4">Ruta</dt>
+                        <dt class="col-sm-4">Route</dt>
                         <dd class="col-sm-8">@Model.Source &rarr; @Model.Destination</dd>
 
-                        <dt class="col-sm-4">Plecare</dt>
+                        <dt class="col-sm-4">Departure</dt>
                         <dd class="col-sm-8">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
 
-                        <dt class="col-sm-4">Loc</dt>
+                        <dt class="col-sm-4">Seat</dt>
                         <dd class="col-sm-8">@Model.SeatNumber</dd>
                     </dl>
                 </div>
@@ -60,10 +60,10 @@
             @* ─── Butoane de actiune ───────────────────────────────────── *@
             <div class="d-flex gap-2 justify-content-center">
                 <a asp-controller="Reservations" asp-action="Details" asp-route-id="@Model.ReservationId" class="btn btn-primary">
-                    Vezi rezervarea
+                    View Reservation
                 </a>
                 <a asp-controller="Reservations" asp-action="Index" class="btn btn-outline-secondary">
-                    Toate rezervarile mele
+                    All My Reservations
                 </a>
             </div>
 

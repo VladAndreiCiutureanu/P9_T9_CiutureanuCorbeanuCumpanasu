@@ -1,14 +1,112 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\",
+  "WorkspaceRootPath": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\flights\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\flights\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\models\\viewmodels\\reservation\\createreservationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\models\\viewmodels\\reservation\\createreservationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reservations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|d:\\facultate\\p9_t9_ciutureanucorbeanucumpanasu\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\payments\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\payments\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\payments\\history.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reports\\occupancy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reports\\occupancy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reports\\revenue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reports\\revenue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reports\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reports\\flightoccupancy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reports\\flightoccupancy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\manifest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reservations\\manifest.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reservations\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\reservations\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\reservations\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\profile\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\profile\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\profile\\assignrole.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\profile\\assignrole.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\profile\\adminuserlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\profile\\adminuserlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|c:\\users\\cumpa\\desktop\\repos\\airlineflightmanagement\\airlineflightmanagementweb\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4BE3A48C-7F5B-C661-5D94-2A59D84A166E}|AirlineFlightManagementWeb\\AirlineFlightManagementWeb.csproj|solutionrelative:airlineflightmanagementweb\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_AirlineFlightManagementWeb_c916b634_f598_446d_b96c_724e9fa4807f/True/SqlTable/dbo.AspNetUsers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_AirlineFlightManagementWeb_c916b634_f598_446d_b96c_724e9fa4807f/True/SqlTable/dbo.PassengerProfiles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +116,363 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "ReservationsController.cs",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Controllers\\ReservationsController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAADgvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-11T18:14:21.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CreateReservationViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Models\\ViewModels\\Reservation\\CreateReservationViewModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-11T18:14:20.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
               "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
               "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reservations\\Create.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAADgvxAAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-09T17:59:13.575Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Search.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Flights\\Search.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Flights\\Search.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Flights\\Search.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Flights\\Search.cshtml",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:07:36.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAnwB4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-11T18:10:20.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAADgvxcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:08:45.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:07:36.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:07:35.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:07:12.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Confirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\Confirmation.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Payments\\Confirmation.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\Confirmation.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Payments\\Confirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:05:48.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Occupancy.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Occupancy.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reports\\Occupancy.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Occupancy.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reports\\Occupancy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:05:05.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "History.cshtml",
-              "DocumentMoniker": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
               "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
-              "ToolTip": "D:\\Facultate\\P9_T9_CiutureanuCorbeanuCumpanasu\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
               "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Payments\\History.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-09T17:54:42.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Process.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\Process.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Payments\\Process.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Payments\\Process.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Payments\\Process.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:05:48.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Revenue.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Revenue.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reports\\Revenue.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Revenue.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reports\\Revenue.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:05:05.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Index.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reports\\Index.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\Index.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reports\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:04:24.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Manifest.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Manifest.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reservations\\Manifest.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Manifest.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reservations\\Manifest.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:03:11.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Details.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reservations\\Details.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Details.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reservations\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:02:59.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Index.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reservations\\Index.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reservations\\Index.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reservations\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:02:23.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "FlightOccupancy.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\FlightOccupancy.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Reports\\FlightOccupancy.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Reports\\FlightOccupancy.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Reports\\FlightOccupancy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-09T18:14:34.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\Edit.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Profile\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\Edit.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Profile\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:02:01.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\Index.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Profile\\Index.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\Index.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Profile\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:02:00.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AssignRole.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\AssignRole.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Profile\\AssignRole.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\AssignRole.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Profile\\AssignRole.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:01:01.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AdminUserList.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\AdminUserList.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Profile\\AdminUserList.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Profile\\AdminUserList.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Profile\\AdminUserList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T18:00:48.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T17:56:56.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AirlineFlightManagementWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\cumpa\\Desktop\\Repos\\AirlineFlightManagement\\AirlineFlightManagementWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "AirlineFlightManagementWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAADgvxUAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T17:56:37.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "dbo.AspNetUsers [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_AirlineFlightManagementWeb_c916b634_f598_446d_b96c_724e9fa4807f/True/SqlTable/dbo.AspNetUsers.sql",
+              "ToolTip": "dbo.AspNetUsers [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-11T17:53:39.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "dbo.PassengerProfiles [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_AirlineFlightManagementWeb_c916b634_f598_446d_b96c_724e9fa4807f/True/SqlTable/dbo.PassengerProfiles.sql",
+              "ToolTip": "dbo.PassengerProfiles [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-11T17:53:25.333Z",
               "EditorCaption": ""
             }
           ]

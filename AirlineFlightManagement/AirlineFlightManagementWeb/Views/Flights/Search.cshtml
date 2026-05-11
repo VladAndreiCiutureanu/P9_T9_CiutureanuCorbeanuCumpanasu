@@ -1,10 +1,10 @@
 @model AirlineFlightManagementWeb.Models.ViewModels.Flight.FlightSearchPageViewModel
 @{
-    ViewData["Title"] = "Caută zboruri";
+    ViewData["Title"] = "Search Flights";
 }
 
 <div class="container mt-4">
-    <h1 class="mb-4">🔍 Caută zboruri</h1>
+    <h1 class="mb-4">Search Flights</h1>
 
     @* ─── Formular cautare ────────────────────────────────────────────── *@
     <div class="card mb-4">
@@ -13,22 +13,22 @@
                 @Html.AntiForgeryToken()
 
                 <div class="col-md-4">
-                    <label asp-for="Source" class="form-label"></label>
+                    <label asp-for="Source" class="form-label">From</label>
                     <input asp-for="Source" class="form-control" placeholder="ex: Bucuresti, OTP" />
                 </div>
 
                 <div class="col-md-4">
-                    <label asp-for="Destination" class="form-label"></label>
+                    <label asp-for="Destination" class="form-label">To</label>
                     <input asp-for="Destination" class="form-control" placeholder="ex: Munchen, MUC" />
                 </div>
 
                 <div class="col-md-3">
-                    <label asp-for="DepartureDate" class="form-label"></label>
+                    <label asp-for="DepartureDate" class="form-label">Date</label>
                     <input asp-for="DepartureDate" class="form-control" type="date" />
                 </div>
 
                 <div class="col-md-1 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary w-100">Caută</button>
+                    <button type="submit" class="btn text-white w-100" style="background-color: #ff8c00;">Search</button>
                 </div>
 
                 <div asp-validation-summary="ModelOnly" class="alert alert-danger mt-3" role="alert" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
@@ -42,12 +42,12 @@
         if (!Model.Results.Any())
         {
             <div class="alert alert-info">
-                Niciun zbor găsit pentru criteriile selectate. Încercați alte date sau destinații.
+                No flights found for the selected criteria. Try different dates or destinations.
             </div>
         }
         else
         {
-            <h4 class="mb-3">@Model.Results.Count() rezultate găsite</h4>
+            <h4 class="mb-3">@Model.Results.Count() results found</h4>
 
             @foreach (var flight in Model.Results)
             {
@@ -58,7 +58,7 @@
                                 <h5 class="mb-1">@flight.AirlineName</h5>
                                 @if (flight.IsFromLocalDb)
                                 {
-                                    <span class="badge bg-warning text-dark">Promoție</span>
+                                    <span class="badge bg-warning text-dark">Promotion</span>
                                 }
                             </div>
                             <div class="col-md-4">
@@ -77,9 +77,9 @@
                             <div class="col-md-3">
                                 @if (flight.Classes.Any())
                                 {
-                                    <small class="text-muted">De la</small>
+                                    <small class="text-muted">From</small>
                                     <h5 class="mb-0 text-primary">@flight.Classes.Min(c => c.Price).ToString("C")</h5>
-                                    <small>@flight.Classes.Count() clase disponibile</small>
+                                    <small>@flight.Classes.Count() classes available</small>
                                 }
                             </div>
                             <div class="col-md-2 text-end">
@@ -87,14 +87,15 @@
                                 {
                                     <a asp-controller="Reservations" asp-action="Create"
                                        asp-route-flightId="@flight.LocalFlightId.Value"
-                                       class="btn btn-success">
-                                        Rezervă
+                                       asp-route-minPrice="@(flight.Classes.Any() ? flight.Classes.Min(c => c.Price) : 0)"
+                                       class="btn btn-success" style="background-color: #ff8c00; border-color: #ff8c00;">
+                                        Book
                                     </a>
                                 }
                                 else
                                 {
                                     <small class="text-muted">
-                                        Doar API. Cautați din nou pentru a importa local.
+                                        API only. Search again to import locally.
                                     </small>
                                 }
                             </div>

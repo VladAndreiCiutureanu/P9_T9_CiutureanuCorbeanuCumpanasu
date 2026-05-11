@@ -1,25 +1,25 @@
 @model AirlineFlightManagementWeb.Models.ViewModels.Reservation.ManifestViewModel
 @{
-    ViewData["Title"] = $"Manifest zbor #{Model.FlightId}";
+    ViewData["Title"] = $"Flight Manifest #{Model.FlightId}";
 }
 
 <div class="container mt-4">
-    <h1 class="mb-3">Manifest pasageri</h1>
+    <h1 class="mb-3">Passenger Manifest</h1>
 
     @* ─── Header zbor ─────────────────────────────────────────────────── *@
     <div class="card mb-3">
         <div class="card-body">
             <dl class="row mb-0">
-                <dt class="col-sm-3">Companie</dt>
+                <dt class="col-sm-3">Airline</dt>
                 <dd class="col-sm-9">@Model.AirlineName</dd>
 
-                <dt class="col-sm-3">Ruta</dt>
+                <dt class="col-sm-3">Route</dt>
                 <dd class="col-sm-9">@Model.Source &rarr; @Model.Destination</dd>
 
-                <dt class="col-sm-3">Plecare</dt>
+                <dt class="col-sm-3">Departure</dt>
                 <dd class="col-sm-9">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
 
-                <dt class="col-sm-3">Total pasageri</dt>
+                <dt class="col-sm-3">Total Passengers</dt>
                 <dd class="col-sm-9"><strong>@Model.Passengers.Count</strong></dd>
             </dl>
         </div>
@@ -28,7 +28,7 @@
     @if (!Model.Passengers.Any())
     {
         <div class="alert alert-info">
-            Niciun pasager rezervat (cu plata confirmata) pe acest zbor.
+            No booked passengers (with confirmed payment) on this flight.
         </div>
     }
     else
@@ -39,9 +39,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Pasager</th>
-                        <th>Loc</th>
-                        <th>Data rezervarii</th>
+                        <th>Passenger</th>
+                        <th>Seat</th>
+                        <th>Reservation Date</th>
                     </tr>
                 </thead>
                 <tbody>

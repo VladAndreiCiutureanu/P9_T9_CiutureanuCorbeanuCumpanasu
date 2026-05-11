@@ -1,6 +1,6 @@
 @model IEnumerable<AirlineFlightManagement.Models.Models.PassengerProfile>
 @{
-    ViewData["Title"] = "Gestiune Pasageri și Conturi";
+    ViewData["Title"] = "Passenger & Account Management";
     var isAdmin = User.IsInRole("Administrator");
 }
 
@@ -21,21 +21,21 @@
     }
 
     <h2>@ViewData["Title"]</h2>
-    <p class="text-muted">Lista completă a pasagerilor înregistrați în sistem.</p>
+    <p class="text-muted">Complete list of registered passengers in the system.</p>
     <hr />
 
     <div class="table-responsive mt-3">
         <table class="table table-striped table-hover border box-shadow align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th>ID Pasager</th>
-                    <th>Nume Complet</th>
-                    <th>Adresă Email</th>
-                    <th>Număr Telefon</th>
-                    <th>Stare Cont</th>
+                    <th>Passenger ID</th>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Account Status</th>
                     @if (isAdmin)
                     {
-                        <th class="text-center">Acțiuni Administrative</th>
+                        <th class="text-center">Administrative Actions</th>
                     }
                 </tr>
             </thead>
@@ -53,11 +53,11 @@
                         <td>
                             @if (isActive)
                             {
-                                <span class="badge bg-success">Activ</span>
+                                <span class="badge bg-success">Active</span>
                             }
                             else
                             {
-                                <span class="badge bg-danger">Dezactivat</span>
+                                <span class="badge bg-danger">Deactivated</span>
                             }
                         </td>
                         @if (isAdmin)
@@ -65,19 +65,19 @@
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
                                     <a asp-action="AssignRole" asp-route-userId="@item.UserId" asp-route-email="@email" class="btn btn-sm btn-outline-primary">
-                                        🛡️ Schimbă Rol
+                                        Change Role
                                     </a>
 
                                     @if (isActive)
                                     {
-                                        <form asp-action="DeactivateUser" method="post" onsubmit="return confirm('Ești sigur că dorești să dezactivezi acest cont?');">
+                                        <form asp-action="DeactivateUser" method="post" onsubmit="return confirm('Are you sure you want to deactivate this account?');">
                                             <input type="hidden" name="userId" value="@item.UserId" />
-                                            <button type="submit" class="btn btn-sm btn-danger">🚫 Dezactivează</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Deactivate</button>
                                         </form>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-sm btn-secondary" disabled>🚫 Dezactivat</button>
+                                        <button class="btn btn-sm btn-secondary" disabled>Deactivated</button>
                                     }
                                 </div>
                             </td>

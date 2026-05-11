@@ -20,6 +20,8 @@ namespace AirlineFlightManagementWeb.Models.ViewModels.Reservation
         [Required(ErrorMessage = "Selectati o clasa de zbor.")]
         public int FlightClassId { get; set; }
 
+        public decimal MinPrice { get; set; }
+
         // Optional — daca user-ul nu alege loc specific, service-ul ia primul disponibil.
         public int? SeatId { get; set; }
 

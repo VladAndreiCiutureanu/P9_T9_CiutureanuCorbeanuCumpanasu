@@ -1,10 +1,10 @@
 @model AirlineFlightManagementWeb.Models.ViewModels.Reservation.CreateReservationViewModel
 @{
-    ViewData["Title"] = "Rezervare noua";
+    ViewData["Title"] = "New Reservation";
 }
 
 <div class="container mt-4">
-    <h1 class="mb-4">Rezervare zbor</h1>
+    <h1 class="mb-4">Flight Reservation</h1>
 
     @* Erori globale (BR-1, BR-4, API unavailable, etc.) *@
     <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert" style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
@@ -14,20 +14,20 @@
         <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    <strong>Detalii zbor</strong>
+                    <strong>Flight Details</strong>
                 </div>
                 <div class="card-body">
                     <dl class="row mb-0">
-                        <dt class="col-sm-5">Companie</dt>
+                        <dt class="col-sm-5">Airline</dt>
                         <dd class="col-sm-7">@Model.AirlineName</dd>
 
-                        <dt class="col-sm-5">Ruta</dt>
+                        <dt class="col-sm-5">Route</dt>
                         <dd class="col-sm-7">@Model.Source &rarr; @Model.Destination</dd>
 
-                        <dt class="col-sm-5">Plecare</dt>
+                        <dt class="col-sm-5">Departure</dt>
                         <dd class="col-sm-7">@Model.DepartureTime.ToString("dd MMM yyyy HH:mm")</dd>
 
-                        <dt class="col-sm-5">Sosire</dt>
+                        <dt class="col-sm-5">Arrival</dt>
                         <dd class="col-sm-7">@Model.ArrivalTime.ToString("dd MMM yyyy HH:mm")</dd>
                     </dl>
                 </div>
@@ -37,40 +37,59 @@
         @* ─── Coloana dreapta: formularul ──────────────────────────────── *@
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <strong>Optiuni rezervare</strong>
+                <div class="card-header d-flex justify-content-between">
+                    <strong>Reservation Options</strong>
+                    @if (Model.MinPrice > 0)
+                    {
+                        <span class="text-success fw-bold">Prices from @Model.MinPrice.ToString("C")</span>
+                    }
                 </div>
                 <div class="card-body">
                     <form asp-action="Create" method="post">
                         @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="FlightId" />
+                        <input type="hidden" asp-for="SeatId" id="selectedSeatInput" />
 
                         @* Selector clasa *@
                         <div class="mb-3">
-                            <label asp-for="FlightClassId" class="form-label">Clasa</label>
+                            <label asp-for="FlightClassId" class="form-label">Class</label>
                             <select asp-for="FlightClassId" asp-items="Model.AvailableClasses" class="form-select">
-                                <option value="">-- Alege clasa --</option>
+                                <option value="">-- Choose class --</option>
                             </select>
                             <span asp-validation-for="FlightClassId" class="text-danger"></span>
                         </div>
 
-                        @* Selector loc (optional) *@
-                        <div class="mb-3">
-                            <label asp-for="SeatId" class="form-label">Loc (optional)</label>
-                            <select asp-for="SeatId" class="form-select">
-                                <option value="">-- Primul disponibil --</option>
-                                @foreach (var seat in Model.AvailableSeats)
-                                {
-                                    <option value="@seat.FlightSeatId">@seat.SeatNumber (@seat.ClassName)</option>
-                                }
-                            </select>
+                        @* Interactive Seat Selector (Airplane layout) *@
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Select Your Seat</label>
+                            <div class="plane-layout text-center p-3 border rounded shadow-sm bg-light">
+                                <div class="plane-nose mb-4">
+                                    <div class="d-inline-block rounded-top bg-secondary text-white px-5 py-2">Cockpit</div>
+                                </div>
+                                <div class="seats-container d-inline-block">
+                                    @* Displaying up to ~18 seats for the visual airplane grid. Assuming seats follow typical row letters like 1A, 1B... *@
+                                    <div class="row g-2 mb-2">
+                                        @foreach (var seat in Model.AvailableSeats.Take(20))
+                                        {
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-sm btn-outline-success seat-btn w-100" data-seat-id="@seat.FlightSeatId" title="Class: @seat.ClassName">
+                                                    @seat.SeatNumber
+                                                </button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="plane-tail mt-3">
+                                    <div class="d-inline-block rounded-bottom bg-secondary text-white px-5 py-1">Tail</div>
+                                </div>
+                            </div>
                             <span asp-validation-for="SeatId" class="text-danger"></span>
-                            <small class="text-muted">Daca nu alegi, primesti automat primul loc disponibil din clasa selectata.</small>
+                            <div id="seatSelectionDisplay" class="mt-2 text-primary fw-bold text-center">No seat selected yet. Auto assignment will be used.</div>
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Anuleaza</a>
-                            <button type="submit" class="btn btn-primary">Rezerva</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                            <button type="submit" class="btn text-white px-4" style="background-color: #ff8c00;">Book</button>
                         </div>
                     </form>
                 </div>
@@ -81,4 +100,29 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const seatButtons = document.querySelectorAll('.seat-btn');
+            const hiddenSeatInput = document.getElementById('selectedSeatInput');
+            const displayLabel = document.getElementById('seatSelectionDisplay');
+
+            seatButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Remove selected state from all
+                    seatButtons.forEach(b => {
+                        b.classList.remove('btn-success', 'text-white');
+                        b.classList.add('btn-outline-success');
+                    });
+
+                    // Mark current as selected
+                    this.classList.remove('btn-outline-success');
+                    this.classList.add('btn-success', 'text-white');
+
+                    // Set value
+                    hiddenSeatInput.value = this.getAttribute('data-seat-id');
+                    displayLabel.innerText = 'Seat Selected: ' + this.innerText;
+                });
+            });
+        });
+    </script>
 }
