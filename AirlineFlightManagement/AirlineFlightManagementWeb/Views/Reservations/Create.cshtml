@@ -66,19 +66,69 @@
                                 <div class="plane-nose mb-4">
                                     <div class="d-inline-block rounded-top bg-secondary text-white px-5 py-2">Cockpit</div>
                                 </div>
-                                <div class="seats-container d-inline-block">
-                                    @* Displaying up to ~18 seats for the visual airplane grid. Assuming seats follow typical row letters like 1A, 1B... *@
-                                    <div class="row g-2 mb-2">
-                                        @foreach (var seat in Model.AvailableSeats.Take(20))
+                                
+                                <div class="seats-wrapper overflow-auto py-2" style="max-height: 400px; overflow-x: hidden;">
+                                    <div class="seats-container d-inline-block">
+                                        @{
+                                            // 1 rând x 4 + 32 rânduri x 6 + 1 rând x 4 = 200 scaune
+                                            var displaySeats = Model.AvailableSeats.Take(200).ToList();
+                                            int seatIndex = 0;
+                                        }
+                                        
+                                        @* Avem în total 34 de rânduri (0-33) *@
+                                        @for (int rowIndex = 0; rowIndex < 34; rowIndex++)
                                         {
-                                            <div class="col-3">
-                                                <button type="button" class="btn btn-sm btn-outline-success seat-btn w-100" data-seat-id="@seat.FlightSeatId" title="Class: @seat.ClassName">
-                                                    @seat.SeatNumber
-                                                </button>
+                                            if (seatIndex >= displaySeats.Count) break;
+
+                                            // Primul rând (0) și ultimul (33) au câte 2 scaune pe o parte, restul au 3
+                                            bool isFirstOrLast = (rowIndex == 0 || rowIndex == 33);
+                                            int seatsPerSide = isFirstOrLast ? 2 : 3;
+
+                                            <div class="d-flex justify-content-center mb-2">
+                                                @* Grupul din Stânga *@
+                                                <div class="d-flex gap-1 me-4 justify-content-end" style="width: 145px;">
+                                                    @for (int j = 0; j < seatsPerSide && seatIndex < displaySeats.Count; j++)
+                                                    {
+                                                        var seat = displaySeats[seatIndex++];
+                                                        if (seat.IsAvailable)
+                                                        {
+                                                            <button type="button" class="btn btn-outline-success seat-btn p-1" style="width: 45px; font-size: 0.85rem; font-weight: 500;" data-seat-id="@seat.FlightSeatId" title="Class: @seat.ClassName">
+                                                                @seat.SeatNumber
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" class="btn btn-secondary p-1 text-white" style="width: 45px; font-size: 0.85rem; font-weight: 500;" disabled title="Occupied">
+                                                                @seat.SeatNumber
+                                                            </button>
+                                                        }
+                                                    }
+                                                </div>
+                                                
+                                                @* Grupul din Dreapta *@
+                                                <div class="d-flex gap-1 justify-content-start" style="width: 145px;">
+                                                    @for (int j = 0; j < seatsPerSide && seatIndex < displaySeats.Count; j++)
+                                                    {
+                                                        var seat = displaySeats[seatIndex++];
+                                                        if (seat.IsAvailable)
+                                                        {
+                                                            <button type="button" class="btn btn-outline-success seat-btn p-1" style="width: 45px; font-size: 0.85rem; font-weight: 500;" data-seat-id="@seat.FlightSeatId" title="Class: @seat.ClassName">
+                                                                @seat.SeatNumber
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" class="btn btn-secondary p-1 text-white" style="width: 45px; font-size: 0.85rem; font-weight: 500;" disabled title="Occupied">
+                                                                @seat.SeatNumber
+                                                            </button>
+                                                        }
+                                                    }
+                                                </div>
                                             </div>
                                         }
                                     </div>
                                 </div>
+                                
                                 <div class="plane-tail mt-3">
                                     <div class="d-inline-block rounded-bottom bg-secondary text-white px-5 py-1">Tail</div>
                                 </div>
@@ -88,7 +138,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                            <a asp-controller="Flights" asp-action="Search" class="btn btn-outline-secondary">Cancel</a>
                             <button type="submit" class="btn text-white px-4" style="background-color: #ff8c00;">Book</button>
                         </div>
                     </form>

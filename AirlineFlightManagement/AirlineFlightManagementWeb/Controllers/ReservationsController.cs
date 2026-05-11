@@ -34,7 +34,6 @@ namespace AirlineFlightManagementWeb.Controllers
 
         // ─────────────────────────────────────────────────────────────────────
         //  GET /Reservations
-        //  Lista rezervarilor utilizatorului curent (REQ-36)
         // ─────────────────────────────────────────────────────────────────────
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -52,7 +51,6 @@ namespace AirlineFlightManagementWeb.Controllers
                     .Select(r => new ReservationListItemViewModel
                     {
                         ReservationId = r.ReservationId,
-                        // Datele zborului vin din Include(r => r.Flight) in repo.
                         AirlineName = r.Flight?.AirlineName ?? "—",
                         Source = r.Flight?.Source ?? "—",
                         Destination = r.Flight?.Destination ?? "—",
@@ -60,7 +58,6 @@ namespace AirlineFlightManagementWeb.Controllers
                         SeatNumber = r.Seat?.SeatNumber ?? "—",
                         TotalPrice = r.TotalPrice,
                         Status = r.Status,
-                        // BR-2: anulare permisa doar daca a ramas timp suficient.
                         CanCancel = r.Status != ReservationStatus.Cancelled
                                  && (r.Flight?.DepartureTime ?? DateTime.MinValue)
                                         > DateTime.UtcNow.AddHours(CANCELLATION_WINDOW_HOURS),
@@ -74,7 +71,6 @@ namespace AirlineFlightManagementWeb.Controllers
 
         // ─────────────────────────────────────────────────────────────────────
         //  GET /Reservations/Create?flightId=5
-        //  Afisare formular booking pentru un zbor
         // ─────────────────────────────────────────────────────────────────────
         [HttpGet]
         public async Task<IActionResult> Create(int flightId, decimal minPrice = 0)
@@ -82,15 +78,13 @@ namespace AirlineFlightManagementWeb.Controllers
             if (flightId <= 0)
                 return BadRequest("FlightId invalid.");
 
-            // Incarcam zborul cu detalii (clase, locuri).
             var flight = await _uow.FlightRepository.GetWithDetailsAsync(flightId);
             if (flight == null)
                 return NotFound();
 
-            // Refuzam daca zborul nu mai e disponibil.
             if (flight.Status != FlightStatus.Scheduled)
             {
-                TempData["Error"] = "Zborul nu mai este disponibil pentru rezervare.";
+                TempData["Error"] = "The flight is not available for reservation.";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -112,8 +106,8 @@ namespace AirlineFlightManagementWeb.Controllers
                     })
                     .ToList(),
 
+                // MODIFICARE AICI: Am scos .Where(s => s.IsAvailable) pentru a trimite TOATE scaunele
                 AvailableSeats = flight.FlightSeats
-                    .Where(s => s.IsAvailable)
                     .Select(s => new AvailableSeatViewModel
                     {
                         FlightSeatId = s.FlightSeatId,
@@ -124,7 +118,10 @@ namespace AirlineFlightManagementWeb.Controllers
                             .FirstOrDefault(fc => fc.FlightClassId == s.FlightClassId)
                             ?.ClassName ?? "—"
                     })
-                    .OrderBy(s => s.SeatNumber)
+                    // Am schimbat ordonarea pe ID (sau lasa-o fara OrderBy) pentru a pastra 
+                    // ordinea in care au fost inserate in baza de date (ex: 1A, 1B, 1C). 
+                    // OrderBy(SeatNumber) alfabetic punea "10A" inaintea lui "2A".
+                    .OrderBy(s => s.FlightSeatId)
                     .ToList()
             };
 
@@ -162,8 +159,6 @@ namespace AirlineFlightManagementWeb.Controllers
                     passengerId.Value, vm.FlightId, vm.FlightClassId, vm.SeatId);
 
                 // REQ-50: notificare succes
-                TempData["Success"] = "Rezervarea a fost creata. Aveti la dispozitie pasul urmator: plata.";
-
                 // Dupa creare → catre pagina de detalii (de unde poate plati)
                 return RedirectToAction(nameof(Details), new { id = reservation.ReservationId });
             }
@@ -242,7 +237,7 @@ namespace AirlineFlightManagementWeb.Controllers
             try
             {
                 await _reservationService.CancelAsync(id, passengerId.Value);
-                TempData["Success"] = "Rezervarea a fost anulata.";
+                TempData["Success"] = "The reservation has been cancelled.";
             }
             catch (UnauthorizedAccessException)
             {
@@ -262,8 +257,6 @@ namespace AirlineFlightManagementWeb.Controllers
 
         // ─────────────────────────────────────────────────────────────────────
         //  GET /Reservations/Manifest/5
-        //  Lista pasageri pentru un zbor (REQ-35)
-        //  Restrictionat la Staff / Administrator
         // ─────────────────────────────────────────────────────────────────────
         [HttpGet]
         [Authorize(Roles = "Administrator,Staff")]
@@ -302,9 +295,6 @@ namespace AirlineFlightManagementWeb.Controllers
         // ─────────────────────────────────────────────────────────────────────
         //  Helper-e private
         // ─────────────────────────────────────────────────────────────────────
-
-        // Identifica pasagerul curent dupa userId-ul Identity.
-        // Returneaza null daca utilizatorul nu are profil (caz anormal).
         private async Task<int?> GetCurrentPassengerIdAsync()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -314,9 +304,6 @@ namespace AirlineFlightManagementWeb.Controllers
             return profile?.PassengerId;
         }
 
-        // Cand POST-ul de Create esueaza si vrem sa re-afisam formularul,
-        // trebuie sa repopulam dropdown-urile (AvailableClasses, AvailableSeats)
-        // pentru ca request-ul nu le-a trimis inapoi.
         private async Task RehydrateCreateViewModelAsync(CreateReservationViewModel vm)
         {
             var flight = await _uow.FlightRepository.GetWithDetailsAsync(vm.FlightId);
@@ -337,18 +324,19 @@ namespace AirlineFlightManagementWeb.Controllers
                 })
                 .ToList();
 
+            // MODIFICARE AICI: La fel, am scos .Where(s => s.IsAvailable)
             vm.AvailableSeats = flight.FlightSeats
-                .Where(s => s.IsAvailable)
                 .Select(s => new AvailableSeatViewModel
                 {
                     FlightSeatId = s.FlightSeatId,
                     SeatNumber = s.SeatNumber,
                     FlightClassId = s.FlightClassId,
+                    IsAvailable = s.IsAvailable, // Trimitem statusul
                     ClassName = flight.FlightClasses
                         .FirstOrDefault(fc => fc.FlightClassId == s.FlightClassId)
                         ?.ClassName ?? "—"
                 })
-                .OrderBy(s => s.SeatNumber)
+                .OrderBy(s => s.FlightSeatId)
                 .ToList();
         }
     }

@@ -46,5 +46,7 @@ namespace AirlineFlightManagementWeb.Models.ViewModels.Reservation
         public string SeatNumber { get; set; } = string.Empty;
         public int FlightClassId { get; set; }
         public string ClassName { get; set; } = string.Empty;
+
+        public bool IsAvailable { get; set; }
     }
 }

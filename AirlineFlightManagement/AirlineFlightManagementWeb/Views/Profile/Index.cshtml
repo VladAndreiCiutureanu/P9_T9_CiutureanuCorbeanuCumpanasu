@@ -3,33 +3,37 @@
     ViewData["Title"] = "My Passenger Profile";
 }
 
-<div class="mt-4">
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <h2 class="text-center">@ViewData["Title"]</h2>
+        <hr />
+
+        <div class="card box-shadow mt-3">
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted">Full Name:</dt>
+                    <dd class="col-sm-8 fw-bold">@Model.FirstName @Model.LastName</dd>
+
+                    <dt class="col-sm-4 text-muted mt-2">Phone Number:</dt>
+                    <dd class="col-sm-8 mt-2">@Model.PhoneNumber</dd>
+
+                    <dt class="col-sm-4 text-muted mt-2">Contact Address:</dt>
+                    <dd class="col-sm-8 mt-2">@Model.Address</dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-light text-center">
+                <a asp-action="Edit" class="btn btn-outline-primary fw-bold">Edit Contact Information</a>
+            </div>
         </div>
-    }
-
-    <h2>@ViewData["Title"]</h2>
-    <hr />
-
-    <div class="card box-shadow col-md-8 mt-3">
-        <div class="card-body">
-            <dl class="row mb-0">
-                <dt class="col-sm-4 text-muted">Full Name:</dt>
-                <dd class="col-sm-8 fw-bold">@Model.FirstName @Model.LastName</dd>
-
-                <dt class="col-sm-4 text-muted mt-2">Phone Number:</dt>
-                <dd class="col-sm-8 mt-2">@Model.PhoneNumber</dd>
-
-                <dt class="col-sm-4 text-muted mt-2">Contact Address:</dt>
-                <dd class="col-sm-8 mt-2">@Model.Address</dd>
-            </dl>
-        </div>
-        <div class="card-footer bg-light">
-            <a asp-action="Edit" class="btn btn-outline-primary fw-bold">Edit Contact Information</a>
-        </div>
+        
     </div>
 </div>
