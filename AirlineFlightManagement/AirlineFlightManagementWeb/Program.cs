@@ -55,20 +55,38 @@ builder.Services.AddScoped<IMarkupService, MarkupService>();
 // user-secrets), folosim RealSerpApiClient; altfel cadem inapoi pe Mock.
 // Asta permite oricui sa ruleze proiectul fara API key (cu Mock), iar cei
 // care vor date reale doar adauga key-ul in config.
+// ─── DIAGNOSTIC: starea configurarii la pornire ─────────────────────────
+Console.WriteLine("════════════════════════════════════════════════════════");
+Console.WriteLine($"[Startup] Environment: {builder.Environment.EnvironmentName}");
+Console.WriteLine($"[Startup] ContentRoot:  {builder.Environment.ContentRootPath}");
+
 var serpApiKey = builder.Configuration["SerpApi:ApiKey"];
+if (string.IsNullOrWhiteSpace(serpApiKey))
+{
+    Console.WriteLine("[Startup] SerpApi:ApiKey = <EMPTY>");
+}
+else
+{
+    var preview = serpApiKey.Length >= 8
+        ? serpApiKey.Substring(0, 8) + "..." + serpApiKey.Substring(serpApiKey.Length - 4)
+        : "<too short>";
+    Console.WriteLine($"[Startup] SerpApi:ApiKey loaded: {preview} (length {serpApiKey.Length})");
+}
+
 if (!string.IsNullOrWhiteSpace(serpApiKey))
 {
     builder.Services.AddHttpClient<ISerpApiClient, RealSerpApiClient>(client =>
     {
         client.Timeout = TimeSpan.FromSeconds(5);  // REQ 5.1
     });
-    Console.WriteLine("[SerpAPI] Folosesc RealSerpApiClient (key configurat).");
+    Console.WriteLine("[SerpAPI] >>> RealSerpApiClient registered <<<");
 }
 else
 {
     builder.Services.AddScoped<ISerpApiClient, MockSerpApiClient>();
-    Console.WriteLine("[SerpAPI] Folosesc MockSerpApiClient (key absent in config).");
+    Console.WriteLine("[SerpAPI] >>> MockSerpApiClient registered (no API key) <<<");
 }
+Console.WriteLine("════════════════════════════════════════════════════════");
 
 // Coleg C — Reservations + Payments + Reports
 builder.Services.AddScoped<IReservationService, ReservationService>();
