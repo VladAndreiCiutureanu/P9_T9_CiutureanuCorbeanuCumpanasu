@@ -113,21 +113,22 @@ namespace AirlineFlightManagementWeb.Controllers
                     })
                     .ToList(),
 
-                // MODIFICARE AICI: Am scos .Where(s => s.IsAvailable) pentru a trimite TOATE scaunele
+                // Trimitem TOATE scaunele (libere si ocupate) catre view ca sa
+                // afiseze layout-ul complet de avion. IsAvailable controleaza
+                // daca butonul e click-abil (verde) sau gri (occupied).
                 AvailableSeats = flight.FlightSeats
                     .Select(s => new AvailableSeatViewModel
                     {
                         FlightSeatId = s.FlightSeatId,
                         SeatNumber = s.SeatNumber,
                         FlightClassId = s.FlightClassId,
+                        IsAvailable = s.IsAvailable,
                         // ClassName populat dintr-un dictionar local pentru evitare N+1
                         ClassName = flight.FlightClasses
                             .FirstOrDefault(fc => fc.FlightClassId == s.FlightClassId)
                             ?.ClassName ?? "—"
                     })
-                    // Am schimbat ordonarea pe ID (sau lasa-o fara OrderBy) pentru a pastra 
-                    // ordinea in care au fost inserate in baza de date (ex: 1A, 1B, 1C). 
-                    // OrderBy(SeatNumber) alfabetic punea "10A" inaintea lui "2A".
+                    // Ordonarea pe ID pastreaza ordinea de insertie in DB
                     .OrderBy(s => s.FlightSeatId)
                     .ToList()
             };
