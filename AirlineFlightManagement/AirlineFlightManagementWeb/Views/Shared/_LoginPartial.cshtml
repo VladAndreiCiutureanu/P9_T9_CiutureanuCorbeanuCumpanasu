@@ -7,13 +7,18 @@
 @if (SignInManager.IsSignedIn(User))
 {
     var currentUser = await UserManager.GetUserAsync(User);
-    var isAdminOrStaff = User.IsInRole("Administrator") || User.IsInRole("Staff");
+    var isAdmin = User.IsInRole("Administrator");
+    var isStaff = User.IsInRole("Staff");
 
-    if (isAdminOrStaff)
+    if (isAdmin || isStaff)
     {
+        // Admin are prioritate la eticheta — daca user-ul are ambele roluri,
+        // afisam (Admin). Staff-only vede (Staff).
+        var roleLabel = isAdmin ? "Admin" : "Staff";
+
         <li class="nav-item">
             <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Profile" asp-action="AdminUserList">
-                Passengers (Admin)
+                Passengers (@roleLabel)
             </a>
         </li>
     }
