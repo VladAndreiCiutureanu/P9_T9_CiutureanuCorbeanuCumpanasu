@@ -9,6 +9,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Fortam incarcarea user-secrets indiferent de mediu. Default-ul
+// (incarca doar in Development) e respectat de obicei, dar Visual Studio
+// uneori cache-uieste configurarea si nu vede secret-urile actualizate
+// dupa "dotnet user-secrets set". Cu apelul explicit, ne asiguram ca
+// SerpApi:ApiKey e disponibil oricum a fost pornit app-ul.
+builder.Configuration.AddUserSecrets(typeof(Program).Assembly, optional: true);
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
