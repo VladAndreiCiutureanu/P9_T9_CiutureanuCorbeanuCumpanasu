@@ -17,15 +17,20 @@ namespace AirlineFlightManagement.Services.Implementations
     {
         private readonly IUnitOfWork _uow;
         private readonly ISerpApiClient _serpApiClient;
+        private readonly IMarkupService _markup;
 
         // Numarul minim de ore inainte de plecare in care un pasager
         // mai poate anula independent rezervarea (BR-2).
         private const int CANCELLATION_WINDOW_HOURS = 24;
 
-        public ReservationService(IUnitOfWork uow, ISerpApiClient serpApiClient)
+        public ReservationService(
+            IUnitOfWork uow,
+            ISerpApiClient serpApiClient,
+            IMarkupService markup)
         {
             _uow = uow;
             _serpApiClient = serpApiClient;
+            _markup = markup;
         }
 
         // ─────────────────────────────────────────────────────────────────────
@@ -158,14 +163,17 @@ namespace AirlineFlightManagement.Services.Implementations
             // ─── PAS 10: Cream entitatea Reservation ──────────────────────────
             // REQ-31: o rezervare = un pasager + un zbor.
             // REQ-33: timestamp generat de noi (UtcNow pentru consistenta).
-            // REQ-38: TotalPrice copiat din FlightClass.Price.
+            // REQ-38: TotalPrice = pretul clasei + markup-ul platformei.
+            //         Astfel pretul stocat = pretul aratat pasagerului in Search
+            //         si in Create. Plata se face pe aceeasi suma.
             // Status initial: Pending (devine ConfirmedAndPaid dupa plata).
+            var markup = await _markup.GetPlatformMarkupAsync();
             var reservation = new Reservation
             {
                 PassengerId = passengerId,
                 FlightId = flightId,
                 FlightSeatId = seat.FlightSeatId,
-                TotalPrice = flightClass.Price,
+                TotalPrice = flightClass.Price + markup,
                 ReservationTimeStamp = DateTime.UtcNow,
                 Status = ReservationStatus.Pending
             };

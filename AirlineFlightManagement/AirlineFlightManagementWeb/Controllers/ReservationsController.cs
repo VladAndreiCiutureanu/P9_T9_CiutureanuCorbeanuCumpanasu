@@ -18,6 +18,7 @@ namespace AirlineFlightManagementWeb.Controllers
     public class ReservationsController : Controller
     {
         private readonly IReservationService _reservationService;
+        private readonly IMarkupService _markupService;
         private readonly IUnitOfWork _uow;
 
         // Numar de ore de la plecare in care se mai poate anula (BR-2).
@@ -26,9 +27,11 @@ namespace AirlineFlightManagementWeb.Controllers
 
         public ReservationsController(
             IReservationService reservationService,
+            IMarkupService markupService,
             IUnitOfWork uow)
         {
             _reservationService = reservationService;
+            _markupService = markupService;
             _uow = uow;
         }
 
@@ -88,6 +91,10 @@ namespace AirlineFlightManagementWeb.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            // Aplicam markup-ul si in afisarea claselor pentru consistenta cu Search:
+            // pretul vazut pe pagina de cautare = pretul aici = pretul platit.
+            var markup = await _markupService.GetPlatformMarkupAsync();
+
             var vm = new CreateReservationViewModel
             {
                 FlightId = flight.FlightId,
@@ -102,7 +109,7 @@ namespace AirlineFlightManagementWeb.Controllers
                     .Select(fc => new SelectListItem
                     {
                         Value = fc.FlightClassId.ToString(),
-                        Text = $"{fc.ClassName} — {fc.Price:C}"
+                        Text = $"{fc.ClassName} — {(fc.Price + markup):C}"
                     })
                     .ToList(),
 
@@ -315,11 +322,14 @@ namespace AirlineFlightManagementWeb.Controllers
             vm.DepartureTime = flight.DepartureTime;
             vm.ArrivalTime = flight.ArrivalTime;
 
+            // Consistenta cu Search: aplicam markup-ul pe afisare
+            var markup = await _markupService.GetPlatformMarkupAsync();
+
             vm.AvailableClasses = flight.FlightClasses
                 .Select(fc => new SelectListItem
                 {
                     Value = fc.FlightClassId.ToString(),
-                    Text = $"{fc.ClassName} — {fc.Price:C}",
+                    Text = $"{fc.ClassName} — {(fc.Price + markup):C}",
                     Selected = fc.FlightClassId == vm.FlightClassId
                 })
                 .ToList();
