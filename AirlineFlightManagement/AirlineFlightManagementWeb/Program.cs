@@ -59,18 +59,25 @@ Console.WriteLine("════════════════════�
 Console.WriteLine($"[Startup] Environment: {builder.Environment.EnvironmentName}");
 Console.WriteLine($"[Startup] ContentRoot:  {builder.Environment.ContentRootPath}");
 
+// Cheia SerpAPI: prima incercare e din configurare (user-secrets / appsettings),
+// fallback la valoarea hardcoded pentru cazurile cand VS / IIS Express
+// nu reuseste sa incarce user-secrets. Pentru productie reala, schimba in
+// appsettings.Production.json sau env var SerpApi__ApiKey.
+const string FALLBACK_SERPAPI_KEY = "e0318499ac581ca8b0177c44b1ce7d1ed248d7425a66033105fccb3efbf35376";
+
 var serpApiKey = builder.Configuration["SerpApi:ApiKey"];
 if (string.IsNullOrWhiteSpace(serpApiKey))
 {
-    Console.WriteLine("[Startup] SerpApi:ApiKey = <EMPTY>");
+    Console.WriteLine("[Startup] SerpApi:ApiKey from config: <EMPTY> — falling back to hardcoded value");
+    serpApiKey = FALLBACK_SERPAPI_KEY;
+    // Injecteaza in configuration ca RealSerpApiClient sa-l gaseasca via IConfiguration
+    builder.Configuration["SerpApi:ApiKey"] = serpApiKey;
 }
-else
-{
-    var preview = serpApiKey.Length >= 8
-        ? serpApiKey.Substring(0, 8) + "..." + serpApiKey.Substring(serpApiKey.Length - 4)
-        : "<too short>";
-    Console.WriteLine($"[Startup] SerpApi:ApiKey loaded: {preview} (length {serpApiKey.Length})");
-}
+
+var preview = serpApiKey.Length >= 8
+    ? serpApiKey.Substring(0, 8) + "..." + serpApiKey.Substring(serpApiKey.Length - 4)
+    : "<too short>";
+Console.WriteLine($"[Startup] SerpApi:ApiKey active: {preview} (length {serpApiKey.Length})");
 
 if (!string.IsNullOrWhiteSpace(serpApiKey))
 {
