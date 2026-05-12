@@ -99,6 +99,23 @@ namespace AirlineFlightManagement.Services.Implementations
         }
 
         // ─── Helper privat: parseaza un zbor din JSON-ul SerpAPI ─────────────
+        // Structura SerpAPI relevanta:
+        // {
+        //   "flights": [
+        //     {
+        //       "departure_airport": { "id": "LHR", "time": "2026-05-15 07:00" },
+        //       "arrival_airport":   { "id": "BER", "time": "2026-05-15 09:00" },
+        //       "airline": "Eurowings",
+        //       "travel_class": "Economy",
+        //       ...
+        //     }
+        //     // pentru zboruri cu escala, mai multe elemente
+        //   ],
+        //   "price": 154,
+        //   "departure_token": "..."
+        // }
+        // Extragem DepartureTime din PRIMUL segment si ArrivalTime din ULTIMUL
+        // (pentru zboruri directe sunt acelasi segment).
         private static Flight? ParseFlight(
             JsonElement element,
             string source,
@@ -118,9 +135,37 @@ namespace AirlineFlightManagement.Services.Implementations
             string airlineName = "Unknown";
             var flightClasses = new List<FlightClass>();
 
-            if (element.TryGetProperty("flights", out var flightsArr))
+            // Fallback la orele hardcoded daca nu reusim sa parsam
+            DateTime departureTime = departureDate;
+            DateTime arrivalTime = departureDate.AddHours(2);
+
+            if (element.TryGetProperty("flights", out var flightsArr)
+                && flightsArr.ValueKind == JsonValueKind.Array)
             {
-                foreach (var f in flightsArr.EnumerateArray())
+                var segments = flightsArr.EnumerateArray().ToList();
+                if (segments.Count > 0)
+                {
+                    // Plecarea reala = ora primului segment
+                    var firstSegment = segments[0];
+                    if (firstSegment.TryGetProperty("departure_airport", out var depAirport)
+                        && depAirport.TryGetProperty("time", out var depTime))
+                    {
+                        var parsed = ParseSerpApiDateTime(depTime.GetString());
+                        if (parsed.HasValue) departureTime = parsed.Value;
+                    }
+
+                    // Sosirea reala = ora ultimului segment (poate fi diferit de
+                    // primul daca exista escale)
+                    var lastSegment = segments[^1];
+                    if (lastSegment.TryGetProperty("arrival_airport", out var arrAirport)
+                        && arrAirport.TryGetProperty("time", out var arrTime))
+                    {
+                        var parsed = ParseSerpApiDateTime(arrTime.GetString());
+                        if (parsed.HasValue) arrivalTime = parsed.Value;
+                    }
+                }
+
+                foreach (var f in segments)
                 {
                     if (f.TryGetProperty("airline", out var airlineElement))
                     {
@@ -143,11 +188,40 @@ namespace AirlineFlightManagement.Services.Implementations
                 Source = source,
                 Destination = destination,
                 AirlineName = airlineName,
-                DepartureTime = departureDate,
-                ArrivalTime = departureDate.AddHours(2),
+                DepartureTime = departureTime,
+                ArrivalTime = arrivalTime,
                 Status = FlightStatus.Scheduled,
                 FlightClasses = flightClasses
             };
+        }
+
+        // SerpAPI returneaza datetime in format "yyyy-MM-dd HH:mm" (ora locala
+        // a aeroportului de origine). Folosim ParseExact pentru robustete.
+        private static DateTime? ParseSerpApiDateTime(string? raw)
+        {
+            if (string.IsNullOrWhiteSpace(raw)) return null;
+
+            if (DateTime.TryParseExact(
+                raw,
+                "yyyy-MM-dd HH:mm",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out var parsed))
+            {
+                return parsed;
+            }
+
+            // Fallback flexibil (in caz ca formatul difera)
+            if (DateTime.TryParse(
+                raw,
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out parsed))
+            {
+                return parsed;
+            }
+
+            return null;
         }
     }
 }
