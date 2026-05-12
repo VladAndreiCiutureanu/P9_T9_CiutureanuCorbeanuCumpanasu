@@ -43,13 +43,25 @@ builder.Services.AddScoped<IPassengerService, PassengerService>();
 // Coleg B — Flights + SerpAPI
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<IMarkupService, MarkupService>();
-// Mock pentru dev/test — schimba in RealSerpApiClient pentru productie
-builder.Services.AddScoped<ISerpApiClient, MockSerpApiClient>();
-// HttpClient pentru RealSerpApiClient (cand vom comuta) — vezi REQ 5.1 timeout 5s
-builder.Services.AddHttpClient<RealSerpApiClient>(client =>
+
+// Selectie automata: daca exista API key configurat (in appsettings.json sau
+// user-secrets), folosim RealSerpApiClient; altfel cadem inapoi pe Mock.
+// Asta permite oricui sa ruleze proiectul fara API key (cu Mock), iar cei
+// care vor date reale doar adauga key-ul in config.
+var serpApiKey = builder.Configuration["SerpApi:ApiKey"];
+if (!string.IsNullOrWhiteSpace(serpApiKey))
 {
-    client.Timeout = TimeSpan.FromSeconds(5);
-});
+    builder.Services.AddHttpClient<ISerpApiClient, RealSerpApiClient>(client =>
+    {
+        client.Timeout = TimeSpan.FromSeconds(5);  // REQ 5.1
+    });
+    Console.WriteLine("[SerpAPI] Folosesc RealSerpApiClient (key configurat).");
+}
+else
+{
+    builder.Services.AddScoped<ISerpApiClient, MockSerpApiClient>();
+    Console.WriteLine("[SerpAPI] Folosesc MockSerpApiClient (key absent in config).");
+}
 
 // Coleg C — Reservations + Payments + Reports
 builder.Services.AddScoped<IReservationService, ReservationService>();
