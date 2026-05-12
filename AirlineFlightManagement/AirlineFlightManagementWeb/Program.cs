@@ -49,6 +49,8 @@ builder.Services.AddScoped<IPassengerService, PassengerService>();
 // Coleg B — Flights + SerpAPI
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<IMarkupService, MarkupService>();
+// REQ-27 — admin gestioneaza credentialele API via UI
+builder.Services.AddScoped<ISystemConfigService, SystemConfigService>();
 
 // Selectie automata: daca exista API key configurat (in appsettings.json sau
 // user-secrets), folosim RealSerpApiClient; altfel cadem inapoi pe Mock.
@@ -134,6 +136,19 @@ using (var scope = app.Services.CreateScope())
         {
             await userManager.AddToRoleAsync(firstUser, "Administrator");
         }
+    }
+
+    // 3. REQ-27: seed cheia SerpAPI in DB daca nu exista.
+    //    Idempotent — daca admin a updatat-o deja prin UI, nu o suprascriem.
+    //    Asta inlocuieste in timp fallback-ul hardcoded: dupa primul run,
+    //    cheia traieste in DB si poate fi modificata din /SystemConfig.
+    var configService = services.GetRequiredService<ISystemConfigService>();
+    var existingKey = await configService.GetSerpApiKeyAsync();
+    if (string.IsNullOrWhiteSpace(existingKey)
+        && !string.IsNullOrWhiteSpace(serpApiKey))
+    {
+        await configService.UpdateSerpApiKeyAsync(serpApiKey);
+        Console.WriteLine("[Seed] SerpAPI key seeded into SystemConfigurations table.");
     }
 }
 

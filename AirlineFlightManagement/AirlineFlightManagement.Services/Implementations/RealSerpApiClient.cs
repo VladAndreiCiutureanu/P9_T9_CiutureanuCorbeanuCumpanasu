@@ -15,12 +15,28 @@ namespace AirlineFlightManagement.Services.Implementations
     public class RealSerpApiClient : ISerpApiClient
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiKey;
+        private readonly IConfiguration _configuration;
+        private readonly ISystemConfigService _configService;
 
-        public RealSerpApiClient(HttpClient httpClient, IConfiguration configuration)
+        public RealSerpApiClient(
+            HttpClient httpClient,
+            IConfiguration configuration,
+            ISystemConfigService configService)
         {
             _httpClient = httpClient;
-            _apiKey = configuration["SerpApi:ApiKey"] ?? string.Empty;
+            _configuration = configuration;
+            _configService = configService;
+        }
+
+        // REQ-27: prioritate la cheia din DB (modificabila de admin via UI),
+        // fallback la IConfiguration (user-secrets / appsettings / hardcoded).
+        // Citim la fiecare apel — overhead-ul DB e neglijabil fata de apelul HTTP.
+        private async Task<string> ResolveApiKeyAsync()
+        {
+            var fromDb = await _configService.GetSerpApiKeyAsync();
+            if (!string.IsNullOrWhiteSpace(fromDb)) return fromDb;
+
+            return _configuration["SerpApi:ApiKey"] ?? string.Empty;
         }
 
         public async Task<IEnumerable<Flight>> SearchFlightsAsync(
@@ -28,10 +44,11 @@ namespace AirlineFlightManagement.Services.Implementations
             string destination,
             DateTime departureDate)
         {
-            if (string.IsNullOrEmpty(_apiKey))
+            var apiKey = await ResolveApiKeyAsync();
+            if (string.IsNullOrEmpty(apiKey))
             {
                 throw new InvalidOperationException(
-                    "API Key-ul pentru SerpAPI nu este configurat in appsettings.json.");
+                    "API Key-ul pentru SerpAPI nu este configurat (nici in DB, nici in config).");
             }
 
             // SerpAPI nu accepta date din trecut
@@ -48,7 +65,7 @@ namespace AirlineFlightManagement.Services.Implementations
             string url = $"https://serpapi.com/search.json?engine=google_flights" +
                          $"&departure_id={safeSource}&arrival_id={safeDestination}" +
                          $"&outbound_date={dateStr}&type=2&currency=USD&hl=en" +
-                         $"&api_key={_apiKey}";
+                         $"&api_key={apiKey}";
 
             var flights = new List<Flight>();
 

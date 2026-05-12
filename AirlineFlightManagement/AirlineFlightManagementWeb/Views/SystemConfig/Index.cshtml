@@ -1,0 +1,109 @@
+@model AirlineFlightManagementWeb.Models.ViewModels.SystemConfig.SystemConfigViewModel
+@{
+    ViewData["Title"] = "System Configuration";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="mb-3">⚙️ Configurare sistem</h1>
+            <p class="text-muted small mb-4">
+                REQ-27 — gestiunea credentialelor pentru API-ul extern de zboruri.
+                Aceasta pagina este accesibila <strong>doar Administratorilor</strong>.
+            </p>
+
+            @* TempData feedback *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"
+                 style="display:@(ViewData.ModelState.ErrorCount > 0 ? "block" : "none")"></div>
+
+            @* ─── Status curent ─────────────────────────────────────────── *@
+            <div class="card mb-4">
+                <div class="card-header">
+                    <strong>Cheia SerpAPI activa</strong>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Valoare (mascata)</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.CurrentKeyLength == 0)
+                            {
+                                <span class="text-warning">⚠ Nu este setata in DB</span>
+                                <small class="text-muted d-block">
+                                    Se foloseste fallback-ul din configurare (user-secrets / hardcoded).
+                                </small>
+                            }
+                            else
+                            {
+                                <code>@Model.CurrentKeyPreview</code>
+                                <small class="text-muted">(lungime: @Model.CurrentKeyLength caractere)</small>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">Ultima actualizare</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.LastUpdated.HasValue)
+                            {
+                                @Model.LastUpdated.Value.ToString("dd MMM yyyy HH:mm")
+                            }
+                            else
+                            {
+                                <span class="text-muted">—</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            @* ─── Formular update ──────────────────────────────────────── *@
+            <div class="card">
+                <div class="card-header">
+                    <strong>Actualizeaza cheia</strong>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Index" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label asp-for="NewApiKey" class="form-label"></label>
+                            <input asp-for="NewApiKey" type="password" class="form-control"
+                                   autocomplete="off" placeholder="Lipeste noua cheie SerpAPI" />
+                            <span asp-validation-for="NewApiKey" class="text-danger"></span>
+                            <small class="form-text text-muted">
+                                Salvarea persista cheia in tabelul SystemConfigurations.
+                                Modificarea e activa imediat — nu e nevoie de restart.
+                            </small>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                                Inapoi
+                            </a>
+                            <button type="submit" class="btn text-white" style="background-color: #ff8c00;">
+                                Salveaza cheia
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-3 small">
+                <strong>Securitate:</strong> cheia nu se afiseaza in clar dupa salvare —
+                doar o previzualizare partiala. Pentru a o vedea complet, consultati
+                <code>SystemConfigurations</code> direct in DB.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

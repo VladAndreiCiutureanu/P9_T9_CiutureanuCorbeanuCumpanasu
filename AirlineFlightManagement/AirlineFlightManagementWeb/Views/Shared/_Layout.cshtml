@@ -49,6 +49,14 @@
                                     <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="Reports" asp-action="Index">Reports</a>
                                 </li>
                             }
+
+                            @* Link-uri admin-only *@
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="SystemConfig" asp-action="Index">⚙️ Settings</a>
+                                </li>
+                            }
                         }
                     </ul>
                     <partial name="_LoginPartial" />
