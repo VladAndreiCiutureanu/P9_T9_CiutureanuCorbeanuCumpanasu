@@ -165,6 +165,11 @@ namespace AirlineFlightManagement.Services.Implementations
                     }
                 }
 
+                // travel_class apare per segment. La un zbor cu escale (3 segmente),
+                // toate fiind Economy, am primit 3x Economy. Folosim un HashSet
+                // sa pastram doar clasele distincte (case-insensitive).
+                var seenClasses = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                 foreach (var f in segments)
                 {
                     if (f.TryGetProperty("airline", out var airlineElement))
@@ -173,13 +178,28 @@ namespace AirlineFlightManagement.Services.Implementations
                     }
                     if (f.TryGetProperty("travel_class", out var tcElement))
                     {
-                        flightClasses.Add(new FlightClass
+                        var className = tcElement.GetString() ?? "Economy";
+                        if (seenClasses.Add(className))
                         {
-                            ClassName = tcElement.GetString() ?? "Economy",
-                            Price = price
-                        });
+                            flightClasses.Add(new FlightClass
+                            {
+                                ClassName = className,
+                                Price = price
+                            });
+                        }
                     }
                 }
+            }
+
+            // Daca API-ul nu a returnat nicio clasa, default la Economy
+            // ca booking-ul sa functioneze totusi.
+            if (flightClasses.Count == 0)
+            {
+                flightClasses.Add(new FlightClass
+                {
+                    ClassName = "Economy",
+                    Price = price
+                });
             }
 
             return new Flight
