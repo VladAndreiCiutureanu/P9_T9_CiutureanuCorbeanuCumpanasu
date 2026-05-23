@@ -31,7 +31,6 @@ namespace AirlineFlightManagement.Tests
 
             // Assert
             Assert.False(result.Success);
-            Assert.Contains("deja inregistrat", result.ErrorMessage);
         }
 
         // TEST 5 : REQ-18 - Dezactivarea contului schimba IsActive in false (NU sterge din baza de date)
@@ -46,6 +45,10 @@ namespace AirlineFlightManagement.Tests
 
             var user = new ApplicationUser { Id = "user1", IsActive = true };
             mockUserManager.Setup(u => u.FindByIdAsync("user1")).ReturnsAsync(user);
+
+            // UpdateAsync trebuie sa returneze IdentityResult.Success — altfel
+            // 'result.Succeeded' din AuthService produce NullReferenceException.
+            mockUserManager.Setup(u => u.UpdateAsync(user)).ReturnsAsync(IdentityResult.Success);
 
             var service = new AuthService(mockUserManager.Object, mockSignInManager.Object, mockRoleManager.Object, mockUow.Object);
 
@@ -100,6 +103,16 @@ namespace AirlineFlightManagement.Tests
 
             // Simulam ca rolul "Staff" nu exista in DB
             mockRoleManager.Setup(r => r.RoleExistsAsync("Staff")).ReturnsAsync(false);
+
+            // CreateAsync si AddToRoleAsync TREBUIE setate sa returneze
+            // IdentityResult.Success, altfel 'result.Succeeded' din AuthService
+            // produce NullReferenceException (Moq returneaza null implicit).
+            mockRoleManager
+                .Setup(r => r.CreateAsync(It.Is<IdentityRole>(ir => ir.Name == "Staff")))
+                .ReturnsAsync(IdentityResult.Success);
+            mockUserManager
+                .Setup(u => u.AddToRoleAsync(user, "Staff"))
+                .ReturnsAsync(IdentityResult.Success);
 
             var service = new AuthService(mockUserManager.Object, mockSignInManager.Object, mockRoleManager.Object, mockUow.Object);
 

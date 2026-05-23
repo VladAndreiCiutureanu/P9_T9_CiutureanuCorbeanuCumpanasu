@@ -103,6 +103,9 @@ namespace AirlineFlightManagement.Services.Implementations
             // Verificăm dacă contul a fost dezactivat de un administrator
             if (!user.IsActive)
             {
+                // Defensiv: dacă userul are un cookie vechi de când era activ,
+                // îl forțăm să iasă imediat (REQ-18 + REQ 5.3 securitate).
+                await _signInManager.SignOutAsync();
                 return AuthResult.Fail("Acest cont este dezactivat. Vă rugăm să contactați suportul tehnic.");
             }
 
